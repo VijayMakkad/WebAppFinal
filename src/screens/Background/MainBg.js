@@ -8,7 +8,6 @@ const MainBg = ({ children }) => {
 
             </div>
             <div className="boxes">
-
                 <div className="blue">
 
                 </div>
@@ -20,6 +19,9 @@ const MainBg = ({ children }) => {
                 </div>
                 <div className="black">
 
+                </div>
+                <div className="content">
+                    {children}
                 </div>
             </div>
         </div>
