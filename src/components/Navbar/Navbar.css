@@ -31,7 +31,7 @@ li{
     width: 100%;
     z-index: 100;
 }
-.nav{
+.navcontainer{
     margin: 0 5px;
     display: flex;
     align-items: center;
@@ -41,6 +41,8 @@ li{
 
 
 .link {
+    text-decoration: none;
+    color: white;
     position: relative;
     display: inline-flex;
     align-items: center;
@@ -93,6 +95,7 @@ width: 100%;
     display: flex;
     width: max-content;
     border-radius: 22px;
+    cursor: pointer;
 }
 
 .circle{
@@ -139,9 +142,6 @@ width: 100%;
 }
 
 @media screen and (min-width:1000px){
-    .container{
-        margin-inline: auto;
-    }
     .toggle, .close{
         display: none;
     }

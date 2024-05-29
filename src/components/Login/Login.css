@@ -2,8 +2,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
-  padding-top: 20px;
+  width: 100%;
 }
 
 .login-box {
