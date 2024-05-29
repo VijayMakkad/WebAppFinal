@@ -81,8 +81,11 @@ const Navbar = () => {
                             </a>
                         </li>
                         <li className="item login">
-                            <ArrowRight style={{ width: '1em', height: '1em', verticalAlign: 'middle' }} />
                             <a href="" className="link">Login</a>
+                            <div className="circle">
+                                <ArrowRight style={{ width: '1em', height: '1em', verticalAlign: 'middle' }} />
+                            </div>
+                            
                         </li>
                         <li className="item">
                             <div className="close" id='close'>
