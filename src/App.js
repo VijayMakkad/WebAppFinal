@@ -1,6 +1,6 @@
-
-import Navbar from './components/Navbar/Navbar';
-import MainBg from './screens/Background/MainBg'
+import Navbar from "./components/Navbar/Navbar";
+import MainBg from "./screens/Background/MainBg";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
   return (
