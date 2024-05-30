@@ -15,12 +15,6 @@ function Login({onHide,show}) {
         <div className="login-container d-flex justify-content-center align-items-center">
           <div className="login-box row w-100 d-flex justify-content-center align-items-stretch">
             <div className="login-left col-lg-6 d-flex flex-column justify-content-center p-5">
-              {/* <img
-                src="/assets/easygold-logo.png"
-                alt="easygold logo"
-                className="img-fluid mb-4"
-                style={{ maxWidth: "150px" }}
-              /> */}
               <h1 className="login-title">
                 Your Journey to Digital Gold Greatness Starts Here.
               </h1>
@@ -59,7 +53,7 @@ function Login({onHide,show}) {
                 </button>
               </form>
             </div>
-            <div className="login-right col-lg-6 d-flex align-items-center justify-content-center p-5">
+            <div className="login-right col-lg-6 d-flex align-items-center justify-content-center">
               <img
                 src="/assets/login-illus.png"
                 alt="illustration"
