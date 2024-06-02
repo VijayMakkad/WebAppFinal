@@ -10,7 +10,7 @@
   .caption-content {
     display: flex;
     flex-direction: column;
-    
+    align-items: flex-start;    
   }
   
   .item-title {
@@ -36,7 +36,8 @@
   .info-row {
     display: flex;
     justify-content: space-between;
-    padding: 1rem 0; /* Add padding for spacing */
+    padding: 1rem 0;
+    margin-top: 2rem; /* Add padding for spacing */
   }
   
   .info-left {
@@ -89,17 +90,20 @@
   border-radius: 10px;
 }
 
-  .trending-row {
-    margin-top: 2rem; /* Add space above the feature row */
-    display: flex;
-    align-items: center;
-    text-align: left;
-    background: #EAD9CE;
-    margin: 10%;
-  }
-  
+.trending-row {
+  margin-top: 2rem; /* Add space above the feature row */
+  display: flex;
+  align-items: center;
+  text-align: left;
+  background: #EAD9CE;
+  margin: 2% auto;
+}
+.trending-row .short-button, .gift-row .short-button{
+  width: inherit;
+}
+
   .gift-row {
-    margin-top: 2rem;
+    margin-top: 1rem;
     display: flex;
     align-items: center;
     text-align: left;
@@ -124,7 +128,12 @@
     width: auto;
     height: 100%;
     object-fit: cover;
-    object-position: right; /* Start filling from the left */
-    border-radius: 65% 0 0 0; /* Add border radius if needed */
+    object-position: right; 
+    border-radius: 65% 0 0 0;
   }
-  
+
+  .short-button {
+    width: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }

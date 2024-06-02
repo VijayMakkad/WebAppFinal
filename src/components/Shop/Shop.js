@@ -101,11 +101,11 @@ const Shop = () => {
             consumers, so earrings made from recycled or sustainable materials
             also gain popularity.
           </p>
-          <Button variant="dark">Shop Now</Button>
+          <Button variant="dark" className="short-button">Shop Now</Button>
         </Col>
-        <Col md={1} className="trending-text"></Col>
-        <Col md={5} className="trending-image">
-          <img src="/assets/shop/trending.png" alt="Paris" className="img-fluid" />
+        <Col md={2} className="trending-text"></Col>
+        <Col md={4} className="trending-image">
+          <img src="/assets/shop/trending.png" alt="trending" className="" />
         </Col>
       </Row>
       <Row className="gift-row">
@@ -119,11 +119,11 @@ const Shop = () => {
             consumers, so earrings made from recycled or sustainable materials
             also gain popularity.
           </p>
-          <Button variant="dark">SHOP GIFTS</Button>
+          <Button variant="dark" className="short-button">SHOP GIFTS</Button>
         </Col>
         <Col md={1} className="trending-text"></Col>
         <Col md={5} className="gift-image">
-          <img src="/assets/shop/gift.png" alt="Paris" className="img-fluid" />
+          <img src="/assets/shop/gift.png" alt="gift" className="image-gift" />
         </Col>
       </Row>
       <div className="info-row">
