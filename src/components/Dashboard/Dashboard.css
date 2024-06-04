@@ -19,15 +19,16 @@
 
 .card-custom .card-title {
   font-size: 1.2em;
-  color: #f0f0f0;
+  color: #c0c0c0;
 }
 
 .card-custom .card-text {
   font-size: 2em;
   font-weight: bold;
-  color: #c0c0c0;
+  color: wheat;
 }
 
+.wishlist-card,
 .recent-transactions-card {
   background-color: #2e2e2e;
   border-radius: 15px;
@@ -37,6 +38,7 @@
   border: 1px solid rgba(0, 0, 0, 0.17);
 }
 
+.wishlist-title,
 .recent-transactions-title {
   color: #f0f0f0;
 }
@@ -109,4 +111,12 @@
   .carousel .carousel-item img {
     height: 40vh;
   }
+}
+
+.wishlist-item-img {
+  margin-bottom: 10px;
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 15px;
 }

@@ -1,78 +1,78 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    /* overflow: hidden; */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-#main{
-    background-color: rgba(0,0,0,0.75);
-    min-height: 200vh;
-    position: relative;
-    overflow: hidden;
+#main {
+  background-color: rgba(0, 0, 0, 0.75);
+  min-height: 200vh;
+  height: max-content;
+  position: relative;
+  overflow: hidden;
 }
-.backdrop{
-    width: 100%;
-    height: 200vh;
-    background-color: rgba(0,0,0,0.3);
-    backdrop-filter: blur(150px);
-    position: absolute;
-    top: 0;
-    left: 0;
-}
-
-.black{
-    height: 120vh;
-    width: 100%;
-    border-radius: 25%;
-    background-color: black;
-    z-index: -2;
-    position: absolute;
-    top: 0;
+.backdrop {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(150px);
+  position: fixed;
+  top: 0;
+  left: 0;
 }
 
-.pink{
-    background-color: #F8A6F0;
-    position: absolute;
-    top: 45%;
-    height: 60vh;
-    width: 35%;
-    right: 0;
-    border-top-left-radius: 50%;
-    border-bottom-left-radius: 50%;
-    z-index: -1;
+.black {
+  height: 120vh;
+  width: 100%;
+  border-radius: 25%;
+  background-color: black;
+  z-index: -2;
+  position: absolute;
+  top: 0;
 }
 
-.blue{
-    background-color: #51B4FA;
-    position: absolute;
-    top: 30%;
-    height: 60vh;
-    width: 35%;
-    left: 0;
-    border-top-right-radius: 50%;
-    border-bottom-right-radius: 50%;
-    z-index: -1;
+.pink {
+  background-color: #f8a6f0;
+  position: absolute;
+  top: 45%;
+  height: 60vh;
+  width: 35%;
+  right: 0;
+  border-top-left-radius: 50%;
+  border-bottom-left-radius: 50%;
+  z-index: -1;
 }
 
-.green{
-    background-color: rgba(248, 217, 151, 0.5);
-    position: absolute;
-    top: 110%;
-    height: 40vh;
-    width: 30%;
-    right:10%;
-    border-radius: 40%;
-    z-index: -1;
+.blue {
+  background-color: #51b4fa;
+  position: absolute;
+  top: 30%;
+  height: 60vh;
+  width: 35%;
+  left: 0;
+  border-top-right-radius: 50%;
+  border-bottom-right-radius: 50%;
+  z-index: -1;
+}
+
+.green {
+  background-color: rgba(248, 217, 151, 0.5);
+  position: absolute;
+  top: 110%;
+  height: 40vh;
+  width: 30%;
+  right: 10%;
+  border-radius: 40%;
+  z-index: -1;
 }
 
 .content {
-    position: relative;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    width: 100%;
-    padding: 20px;
-    color: white;
-    /* Ensure text color contrasts with background */
+  position: relative;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 20px;
+  color: white;
+  /* Ensure text color contrasts with background */
 }
