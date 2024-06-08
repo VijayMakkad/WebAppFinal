@@ -1,7 +1,8 @@
 import React from "react";
 import { Container, Row, Col, Carousel, Button } from "react-bootstrap";
 import "./Shop.css";
-import Masonry from "react-masonry-css";
+import ImageGrid from "./ImageGrid";
+import CategoryGrid from "./CategoryGrid";
 
 const carouselItems = [
   "/assets/dashboard_carousel.png",
@@ -12,7 +13,6 @@ const carouselItems = [
 ];
 
 const galleryItems = [
- 
   "/assets/dashboard_carousel.png",
   "/assets/shop/gallery1.png",
   "/assets/dashboard_carousel.png",
@@ -21,6 +21,8 @@ const galleryItems = [
   "/assets/shop/gallery4.png",
   "/assets/shop/gallery2.png",
   "/assets/shop/gallery3.png",
+  "/assets/shop/gallery3.png",
+  "/assets/shop/gallery3.png",
 ];
 
 const productItems = [
@@ -28,7 +30,7 @@ const productItems = [
   "/assets/prod4.png",
   "/assets/prod3.png",
   "/assets/prod4.png",
-]
+];
 
 const Shop = () => {
   return (
@@ -69,27 +71,7 @@ const Shop = () => {
           </div>
         </Col>
       </Row>
-      <Row className="my-4">
-        <Masonry
-          breakpointCols={{
-            default: 3,
-            1100: 2,
-            700: 1,
-          }}
-          className="masonry-grid"
-          columnClassName="masonry-column"
-        >
-          {galleryItems.map((item, index) => (
-            <div key={index} className="gallery-item">
-              <img
-                src={item}
-                alt={`Gallery Item ${index}`}
-                className="img-fluid gallery-image"
-              />
-            </div>
-          ))}
-        </Masonry>
-      </Row>
+   <CategoryGrid/>
       <Row className="trending-row">
         <Col md={6} className="trending-text">
           <h1>Most Trending this Autumn</h1>
@@ -105,7 +87,7 @@ const Shop = () => {
         </Col>
         <Col md={2} className="trending-text"></Col>
         <Col md={4} className="trending-image">
-          <img src="/assets/shop/trending.png" alt="trending" className="" />
+          <img src="/assets/shop/trending.png" alt="trending" className="img-fluid" />
         </Col>
       </Row>
       <Row className="gift-row">
@@ -123,13 +105,13 @@ const Shop = () => {
         </Col>
         <Col md={1} className="trending-text"></Col>
         <Col md={5} className="gift-image">
-          <img src="/assets/shop/gift.png" alt="gift" className="image-gift" />
+          <img src="/assets/shop/gift.png" alt="gift" className="image-gift img-fluid" />
         </Col>
       </Row>
       <div className="info-row">
-              <span className="info-bold">Follow us on instagram</span>
-            </div>
-            <Row className="gallery-row">
+        <span className="info-bold">Follow us on instagram</span>
+      </div>
+      <Row className="gallery-row">
         {productItems.map((item, index) => (
           <Col md={3} sm={6} xs={12} key={index} className="gallery-item">
             <img

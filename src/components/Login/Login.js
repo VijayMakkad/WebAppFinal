@@ -1,5 +1,5 @@
 import React from "react";
-import Modal from 'react-bootstrap/modal'
+import Modal from 'react-bootstrap/Modal'
 import "./Login.css";
 
 import 'bootstrap/dist/css/bootstrap.min.css';

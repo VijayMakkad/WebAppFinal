@@ -1,93 +1,77 @@
-.carousel-caption-custom {
-    left: 10%;
-    right: auto;
-    transform: translateY(-50%);
-    top: 50%;
-    bottom: auto;
-    text-align: left;
-  }
-  
-  .caption-content {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;    
-  }
-  
-  .item-title {
-    font-weight: bold;
-    font-size: 2.5rem; /* Adjust size as needed */
-    margin-bottom: 1rem;
-    color: #000;
-  }
-  
-  .item-price {
-    font-size: 1.25rem; /* Adjust size as needed */
-    margin-bottom: 1rem;
-  }
-  
-  .carousel-caption-custom .btn-dark {
-    background-color: black;
-    border: none;
-  }
-  .info-container {
-    margin-top: 2rem; /* Add space above the container */
-  }
-  
-  .info-row {
-    display: flex;
-    justify-content: space-between;
-    padding: 1rem 0;
-    margin-top: 2rem; /* Add padding for spacing */
-  }
-  
-  .info-left {
-    font-weight: bold;
-    font-size: 1.75rem;
-  }
-  
-  .info-right {
-    text-align: right;
-  
-  }
-  
-  .info-bold {
-    font-weight: bold;
-    font-size: 1.75rem;
-  }
-  
-  .gallery-row {
-    margin-top: 2rem; /* Add space above the gallery */
-  }
-  
-  .gallery-item {
-    margin-bottom: 1rem; /* Add space between gallery items */
-  }
-  
-  .gallery-image {
-    width: 100%;
-    border-radius: 15px; /* Add border radius if needed */
-  }
-  /* Add these styles to your Shop.css file */
-.masonry-grid {
-  display: flex;
-  margin-left: -20px;
-  width: auto;
+.shop {
+  margin-top: 3rem;
 }
 
-.masonry-column {
-  background-clip: padding-box;
-  padding-left: 20px;
+.carousel-caption-custom {
+  left: 10%;
+  right: auto;
+  transform: translateY(-50%);
+  top: 50%;
+  bottom: auto;
+  text-align: left;
+}
+
+.caption-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.item-title {
+  font-weight: bold;
+  font-size: 2.5rem; /* Adjust size as needed */
+  margin-bottom: 1rem;
+  color: #000;
+}
+
+.item-price {
+  font-size: 1.25rem; /* Adjust size as needed */
+  margin-bottom: 1rem;
+}
+
+.carousel-caption-custom .btn-dark {
+  background-color: black;
+  border: none;
+}
+
+.info-container {
+  margin-top: 2rem; /* Add space above the container */
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem 0;
+  margin-top: 2rem; /* Add padding for spacing */
+}
+
+.info-left {
+  font-weight: bold;
+  font-size: 1.75rem;
+}
+
+.info-right {
+  text-align: right;
+}
+
+.info-bold {
+  font-weight: bold;
+  font-size: 1.75rem;
+}
+
+.gallery-row {
+  margin-top: 2rem; /* Add space above the gallery */
 }
 
 .gallery-item {
-  margin-bottom: 20px; /* Adjust as needed */
+  margin-bottom: 1rem; /* Add space between gallery items */
 }
 
 .gallery-image {
   width: 100%;
   height: auto;
   display: block;
-  border-radius: 10px;
+  border-radius: 15px; /* Add border radius if needed */
 }
 
 .trending-row {
@@ -98,42 +82,40 @@
   background: #EAD9CE;
   margin: 2% auto;
 }
-.trending-row .short-button, .gift-row .short-button{
-  width: inherit;
+
+.trending-text, .gift-text {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2rem;
+  color: #000;
 }
 
-  .gift-row {
-    margin-top: 1rem;
-    display: flex;
-    align-items: center;
-    text-align: left;
-    background: #EAD9CE;
-    margin: auto;
-    width: 80%;
-    border-radius: 15px;
-  }
-  
-  .trending-text, .gift-text {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 2rem;
-    color: #000;
-  }
-  .trending-text p, .gift-text p{
-    color: #000;
-  }
-  
-  .trending-image img {
-    width: auto;
-    height: 100%;
-    object-fit: cover;
-    object-position: right; 
-    border-radius: 65% 0 0 0;
-  }
+.trending-text p, .gift-text p {
+  color: #000;
+}
 
-  .short-button {
-    width: auto;
-    padding-left: 1rem;
-    padding-right: 1rem;
-  }
+.trending-image img {
+  width: auto;
+  height: 100%;
+  object-fit: cover;
+  object-position: right;
+  border-radius: 65% 0 0 0;
+}
+
+.short-button {
+  width: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+.gift-row {
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  text-align: left;
+  background: #EAD9CE;
+  margin: auto;
+  width: 80%;
+  border-radius: 15px;
+}
