@@ -5,7 +5,6 @@ function App() {
     <div id="App">
       <MainBg>
         <Navbar />
-       
       </MainBg>
     </div>
   );
