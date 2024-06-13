@@ -4,11 +4,12 @@
     box-sizing: border-box;
 }
 
-#main{
-    background-color: rgba(0,0,0,0.75);
-    min-height: 200vh;
-    position: relative;
-    overflow: hidden;
+#main {
+  background-color: rgba(0, 0, 0, 0.75);
+  min-height: 200vh;
+  height: max-content;
+  position: relative;
+  overflow: hidden;
 }
 .backdrop{
     width: 100%;

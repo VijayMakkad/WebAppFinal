@@ -1,39 +1,36 @@
 import React from "react";
 import { Container, Row, Col, Card, Carousel, Button } from "react-bootstrap";
-import { Line, Doughnut } from "react-chartjs-2";
+import { Doughnut } from "react-chartjs-2";
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+} from "recharts";
 import "./Dashboard.css";
 import { Chart as ChartJS } from "chart.js/auto";
 import { Chart } from "react-chartjs-2";
+import { height } from "@fortawesome/free-brands-svg-icons/fa42Group";
 
-const lineData = {
-  labels: [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
-    "May",
-    "Jun",
-    "Jul",
-    "Aug",
-    "Sep",
-    "Oct",
-    "Nov",
-    "Dec",
-  ],
-  datasets: [
-    {
-      label: "Earnings",
-      data: [
-        500, 1000, 1500, 2000, 2500, 3000, 3500, 3812.19, 3000, 3500, 4000,
-        4500,
-      ],
-      backgroundColor: "rgba(144, 238, 144, 0.2)",
-      borderColor: "rgba(144, 238, 144, 1)",
-      borderWidth: 1,
-      fill: true,
-    },
-  ],
+//Below code is for generating random data for the line chart
+const generateLineData = (years) => {
+  const data = [];
+  let earnings = 500;
+  for (let i = 0; i < years; i++) {
+    earnings += earnings * (Math.random() * 0.1);
+    earnings += (Math.random() - 0.5) * 1000;
+    data.push({
+      name: `Year ${2000 + i}`,
+      earnings: parseFloat(earnings.toFixed(2)),
+    });
+  }
+  return data;
 };
+
+const lineData = generateLineData(15);
 
 const doughnutData = {
   labels: ["Paid", "Remaining"],
@@ -46,6 +43,19 @@ const doughnutData = {
   ],
 };
 
+const doughnutOptions = {
+  cutout: "75%", // Adjust this value to change the thickness
+  responsive: true,
+  plugins: {
+    legend: {
+      display: true, // Hide the legend if not needed
+    },
+    tooltip: {
+      enabled: true, // Disable the tooltip if not needed
+    },
+  },
+};
+
 const carouselItems = [
   "/assets/dashboard_carousel.png",
   "/assets/dashboard_carousel.png",
@@ -54,6 +64,13 @@ const carouselItems = [
   "/assets/dashboard_carousel.png",
 ];
 
+const wishlistItems = [
+  "/assets/prod1.png",
+  "/assets/prod2.png",
+  "/assets/prod3.png",
+  "/assets/prod4.png",
+  "/assets/prod1.png",
+];
 const transactions = [
   {
     grams: "2.693 gms",
@@ -79,6 +96,7 @@ const transactions = [
 ];
 
 const Dashboard = () => {
+  const maxVisibleItems = 5;
   return (
     <Container fluid className="dashboard">
       <Row>
@@ -111,8 +129,16 @@ const Dashboard = () => {
         <Col md={8} sm={12}>
           <Card className="card-custom">
             <Card.Body>
-              <Card.Title>Gold rates the past year</Card.Title>
-              <Line data={lineData} />
+              <Card.Title>Gold rates the past 15 years</Card.Title>
+              <ResponsiveContainer width="100%" height={300}>
+                <LineChart data={lineData}>
+                  <XAxis dataKey="name" />
+                  <YAxis />
+                  <Tooltip />
+                  <Legend />
+                  <Line type="monotone" dataKey="earnings" stroke="#90EE90" />
+                </LineChart>
+              </ResponsiveContainer>
             </Card.Body>
           </Card>
         </Col>
@@ -120,7 +146,7 @@ const Dashboard = () => {
           <Card className="card-custom">
             <Card.Body>
               <Card.Title>SIP Overview</Card.Title>
-              <Doughnut data={doughnutData} />
+              <Doughnut data={doughnutData} options={doughnutOptions} />
             </Card.Body>
           </Card>
         </Col>
@@ -141,6 +167,40 @@ const Dashboard = () => {
           </Carousel>
         </Col>
       </Row>
+      {/* Wishlist */}
+      <Row className="my-4">
+        <Col>
+          <Card className="wishlist-card">
+            <Card.Body>
+              <Row>
+                <Col md={7} sm={7}>
+                  <h5 className="wishlist-title">Your Wishlist</h5>
+                </Col>
+                <Col
+                  md={5}
+                  sm={5}
+                  style={{ marginBottom: "1rem" }}
+                  className="d-flex align-items-center justify-content-end"
+                >
+                  <Button variant="outline-light">
+                    {wishlistItems.length > maxVisibleItems
+                      ? "View all"
+                      : "Explore products"}
+                  </Button>
+                </Col>
+              </Row>
+              <Row>
+                {wishlistItems.slice(0, maxVisibleItems).map((item, index) => (
+                  <Col key={index}>
+                    <img src={item} className="wishlist-item-img" />
+                  </Col>
+                ))}
+              </Row>
+            </Card.Body>
+          </Card>
+        </Col>
+      </Row>
+      {/* Recent Transactions */}
       <Row className="my-4">
         <Col>
           <Card className="recent-transactions-card">
@@ -148,12 +208,13 @@ const Dashboard = () => {
               <Row>
                 <Col md={7} sm={7}>
                   <h5 className="recent-transactions-title">
-                    Recent Transactions
+                    Your Recent Transactions
                   </h5>
                 </Col>
                 <Col
                   md={5}
                   sm={5}
+                  style={{ marginBottom: "1rem" }}
                   className="d-flex align-items-center justify-content-end"
                 >
                   <Button variant="outline-light">View all</Button>
@@ -184,15 +245,27 @@ const Dashboard = () => {
         </Col>
       </Row>
       <Row className="my-4">
-        <Col md={5} sm={12}>
+        <Col md={12} sm={12}>
           <Card className="referral-card">
             <Card.Body>
               <div>
                 <h2></h2>
               </div>
+
               <h4>GIVE $20, GET $20</h4>
               <p>Tell your friend to enter your code at the checkout:</p>
+              <img
+                className="d-block"
+                src={"/assets/referral_steps.png"}
+                alt={`Referral Flow`}
+                style={{
+                  borderRadius: "10px",
+                  width: "80%",
+                  margin: "0 auto",
+                }}
+              />
               <div className="referral-code">Vignesh20</div>
+
               <div>
                 <Button variant="dark" style={{ marginRight: "0.5rem" }}>
                   Copy code
@@ -216,12 +289,31 @@ const Dashboard = () => {
                   <i className="fa fa-twitter"></i>
                 </a>
               </div>
+
               <a href="#" className="terms-link">
                 Terms & Conditions
               </a>
             </Card.Body>
           </Card>
         </Col>
+        {/* <Col md={7} sm={12}>
+            <Card className="referral-card">
+              <Card.Body>
+                <div>
+                  <h2></h2>
+                </div>
+
+                <div>
+                  <img
+                    className="d-block w-100"
+                    src={"/assets/referral_steps.png"}
+                    alt={`Referral Flow`}
+                    style={{ borderRadius: "15px" }}
+                  />
+                </div>
+              </Card.Body>
+            </Card>
+          </Col> */}
       </Row>
     </Container>
   );
