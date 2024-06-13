@@ -1,12 +1,7 @@
-import React, { useState, useEffect } from "react";
-import "./product_desc.css";
-import {
-  faShoppingCart,
-  faUser,
-  faSearch,
-  faStar,
-  faStarHalfAlt,
-} from "@fortawesome/free-solid-svg-icons";
+import React, { useState, useEffect } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faStar, faStarHalfAlt, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
+
 import {
   faFacebookF,
   faTwitter,
@@ -14,12 +9,8 @@ import {
   faWhatsapp,
   faPinterest,
 } from "@fortawesome/free-brands-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import SimilarProducts from "./SimilarProduct";
-import TabSection from "./TabSection";
-import ProductPage from "./Product";
-
-const ProductDescPage = () => {
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+const ProductPage = () => {
   const [activeTab, setActiveTab] = useState("descriptionContent");
   const [imgId, setImgId] = useState(1);
 
@@ -53,12 +44,9 @@ const ProductDescPage = () => {
   }, [imgId]);
 
   return (
-    <div id="product">
-      <div className="white-divider"></div>
-
-      <div className="card-wrapper">
-        <div className="card" style={{ display: "contents" }}>
-          {/* card left */}
+    <div className="container">
+      <div className="row card-wrapper">
+        <div className="col-md-4">
           <div className="img-select">
             {["1", "2", "3", "4"].map((id) => (
               <div className="img-item" key={id}>
@@ -73,27 +61,15 @@ const ProductDescPage = () => {
                   <img
                     src={`../assets/prod${id}.png`}
                     alt={`product image ${id}`}
+                    className="img-fluid"
                   />
                 </a>
               </div>
             ))}
           </div>
-          <div className="product-imgs">
-            <div className="img-display">
-              <div className="img-showcase">
-                {["1", "2", "3", "4"].map((id) => (
-                  <img
-                    src={`../assets/prod${id}.png`}
-                    alt={`product image ${id}`}
-                    key={id}
-                  />
-                ))}
-              </div>
-            </div>
-          </div>
-
-          {/* card right */}
-          <div className="product-content">
+        </div>
+        <div className="col-md-8">
+          <div className="card product-content">
             <h2 className="product-title">Lira Earrings</h2>
             <div className="product-rating">
               {[...Array(4)].map((_, i) => (
@@ -117,8 +93,8 @@ const ProductDescPage = () => {
             </div>
 
             <div className="purchase-info">
-              <input type="number" min="0" defaultValue="1" />
-              <button type="button" className="btn">
+              <input type="number" min="0" defaultValue="1" className="form-control" style={{ width: '20%', color: '#000' }} />
+              <button type="button" className="btn btn-primary">
                 Add to Cart <FontAwesomeIcon icon={faShoppingCart} />
               </button>
             </div>
@@ -132,7 +108,7 @@ const ProductDescPage = () => {
                 faWhatsapp,
                 faPinterest,
               ].map((icon, index) => (
-                <a href="#" key={index}>
+                <a href="#" key={index} className="btn btn-secondary">
                   <FontAwesomeIcon icon={icon} />
                 </a>
               ))}
@@ -155,12 +131,8 @@ const ProductDescPage = () => {
           </div>
         </div>
       </div>
-      {/* <ProductPage/> */}
-      <TabSection />
-
-      <SimilarProducts />
     </div>
   );
-};
+}
 
-export default ProductDescPage;
+export default ProductPage;

@@ -1,7 +1,5 @@
 import React from 'react'
-import 'bootstrap/dist/css/bootstrap.min.css';
 import { motion, useScroll, useTransform} from 'framer-motion';
-import { ReactComponent as StarUnfilled } from 'remixicon/icons/System/star-line.svg';
 import { ReactComponent as StarFilled } from 'remixicon/icons/System/star-fill.svg';
 import { ReactComponent as StarHalfFilled } from 'remixicon/icons/System/star-half-fill.svg';
 import gsap from 'gsap';
@@ -12,8 +10,11 @@ import MainBg from '../Background/MainBg'
 import Navbar from '../../components/Navbar/Navbar'
 
 import './Landing.css'
+
+
 import splitter from '../../utils/splitletters';
-import Card from './Components/Card';
+
+import CardLanding from './Components/CardLanding/CardLanding';
 import Calculator from './Components/Calculator/Calculator';
 
 
@@ -211,7 +212,7 @@ export default function Landing() {
                       )}</motion.h1>
                 </div>
                 <div className="cards">
-                  {data.map((item, index) => (<Card {...item} key={index} id={`card-${index+1}`} svgid={`svg-${index+1}`} />))}
+                  {data.map((item, index) => (<CardLanding {...item} key={index} id={`card-${index+1}`} svgid={`svg-${index+1}`} />))}
                 </div>
               </section>
               <section id="three">
@@ -277,7 +278,7 @@ export default function Landing() {
                 
               </section>
             </div>
-        </MainBg>
+          </MainBg>
       </>
   )
 }

@@ -1,13 +1,12 @@
 import React, {useRef} from 'react'
-import 'bootstrap/dist/css/bootstrap.min.css';
 import { motion } from 'framer-motion';
 
-import './Card.css'
-export default function Card({ heading, subtext, img, id, svg, svgid }) {
+import './CardLanding.css'
+export default function CardLanding({ heading, subtext, img, id, svg, svgid }) {
 
     return (
         <>
-            <div className="card" id={id}>
+            <div className="cardlanding" id={id}>
                 <div className="d-flex flex-row justify-content-between align-items-center h-100">
                     <div className="text d-flex flex-md-column col-xl-6 h-100 justify-content-center align-items-start">
                         <div className="heading mt-1">
