@@ -1,0 +1,91 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.card{
+    background-color: rgba(0,0,0,0.2);
+    height: 60vh;
+    width: 70%;
+    padding: 50px;
+    border-radius: 30px;
+    position: absolute;
+    top: 0%;
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+    display: none;
+}
+
+@media screen and (max-width:768px) {
+    .card{width: 100%;}
+}
+
+@media screen and (min-width:768px) and (max-width:1200px) {
+    svg{
+        width: 200px;
+        height: 200px;
+    }
+    .image{
+        display: none;
+    }
+    .inner{
+        display: none;
+    }
+}
+
+.svg-animation{
+    padding: 10px;
+    position: absolute;
+    top: 0%;
+    left: 70%;
+    height: 60vh;
+    width: 30%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    display: none;
+}
+
+.image{
+    height: 300px;
+    width: 300px;
+    border-radius: 20px;
+    overflow: hidden;
+    .inner{
+        background-color: aliceblue;
+        width: 100%;
+        height: 100%;
+    }
+}
+
+.image img {
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+}
+.text{
+    display: flex;
+    flex-direction: column;
+    row-gap: 50px;
+}
+
+.heading{
+    color: white;
+    font-size: 35px;
+    font-weight: 500;
+}
+
+.subtext{
+    color: white;
+    font-size: 20px;
+    font-weight: 200;
+}

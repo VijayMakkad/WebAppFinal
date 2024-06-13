@@ -1,0 +1,60 @@
+.calculator{
+    position: relative;
+    width: 80%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.4);
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.absimg{
+    position: absolute;
+    top:-50px;
+    right: -200px;
+}
+.calc-heading{
+    position: relative;
+}
+.calc-gradient{
+    position: absolute;
+    top: 50px;
+    left: -60px;
+    height: 8px;
+    width: 380px;
+    border-radius: 5px;
+    background:linear-gradient(to right,#020C39,#4D0063);
+}
+
+h1{
+    font-weight: 400;
+}
+
+h4{
+    font-weight: 200;
+    font-size: 1em;
+}
+
+@media screen and (max-width:900px) {
+    .calculator{
+        width: 100%;
+    }
+    .absimg{
+        top: -25px;
+        right: -120px;
+        img{
+            height: 90px;
+            width: 200px;
+        }
+    }
+
+    h1{
+        font-size: 1.5em;
+    }
+
+    h4{
+        font-size: .6em
+    }
+    .calc-gradient{
+        display: none;
+    }
+}

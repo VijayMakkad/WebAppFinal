@@ -9,6 +9,7 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
+
 li,a{
     text-decoration: none;
     list-style: none;  
@@ -24,7 +25,7 @@ li{
 
 .header{
     margin: 5px 0;
-    padding: 0 5px;
+    padding: 5px 5px;
     position: fixed;
     top: 0;
     left: 0;
