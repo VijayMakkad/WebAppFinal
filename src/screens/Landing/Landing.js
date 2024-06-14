@@ -103,18 +103,36 @@ export default function Landing() {
         scrub: 2,
       }
     })
-    timeline
+
+    if (window.innerWidth > 800) {
+      timeline
+        .addLabel('card-1-display')
+        .to('#card-1,#svg-1', { display: 'flex' })
+        .to('#card-1,#svg-1', { display: 'none' })
+        .addLabel('card-2-display')
+        .to('#card-2,#svg-2', { display: 'flex' })
+        .to('#card-2,#svg-2', { display: 'none' })
+        .addLabel('card-3-display')
+        .to('#card-3,#svg-3', { display: 'flex' })
+        .to('#card-3,#svg-3', { display: 'none' })
+        .addLabel('card-4-display')
+        .to('#card-4,#svg-4', { display: 'flex' })
+    }
+
+    else {
+      timeline
       .addLabel('card-1-display')
-      .to('#card-1,#svg-1', { display: 'flex' })
-      .to('#card-1,#svg-1', { display: 'none' })
+      .to('#card-1', { display: 'flex' })
+      .to('#card-1', { display: 'none' })
       .addLabel('card-2-display')
-      .to('#card-2,#svg-2', { display: 'flex' })
-      .to('#card-2,#svg-2', { display: 'none' })
+      .to('#card-2', { display: 'flex' })
+      .to('#card-2', { display: 'none' })
       .addLabel('card-3-display')
-      .to('#card-3,#svg-3', { display: 'flex' })
-      .to('#card-3,#svg-3', { display: 'none' })
+      .to('#card-3', { display: 'flex' })
+      .to('#card-3', { display: 'none' })
       .addLabel('card-4-display')
-      .to('#card-4,#svg-4', { display: 'flex' })
+      .to('#card-4', { display: 'flex' })
+    }
 
   })
   useGSAP(() => {
