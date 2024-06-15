@@ -9,6 +9,7 @@ import Cart from './screens/Cart/Cart';
 
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { CartProvider } from 'react-use-cart';
+import Account from './screens/Acount/Account';
 function App() {
   return (
     <div id="App">
@@ -21,6 +22,7 @@ function App() {
             <Route path="/explore" element={<LatestProduct />} />
             <Route path="/product" element={<ProductDescPage />} />
             <Route path="/cart" element={<Cart />} />
+            <Route path="/account" element={<Account />} />
           </Routes>
         </Router>
       </CartProvider>

@@ -85,8 +85,8 @@ const ShoppingCart = () => {
   if (isEmpty) return <MainBg><h1 className="text-center mt-5">Your Cart is Empty!</h1></MainBg>
 
   return (
-    <section className="container py-6">
       <MainBg>
+    <section className="container py-6">
         <div className="row justify-content-center">
           <h4 className="text-center my-4" style={{ fontSize: '24px' }}>
             Shopping Cart
@@ -293,8 +293,8 @@ const ShoppingCart = () => {
             </div>
           </div>
         </div>
-      </MainBg>
     </section>
+      </MainBg>
   )
 }
 

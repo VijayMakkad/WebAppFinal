@@ -1,0 +1,120 @@
+/* account.css */
+
+/* General input style */
+.custom-input {
+  background-color: transparent !important;
+  border: none;
+  border-bottom: 1px solid #ffffff; /* Set the border color to white */
+  color: #ffffff !important; /* Set the text color to white */
+  outline: none; /* Removes the default focus outline */
+  padding: 4.5px 0; /* Adds some padding for better visual spacing */
+  margin-bottom: 18px; /* Ensures some margin for spacing between fields */
+  font-size: 0.9rem; /* Reduced font size by 10% */
+  width: 100%;
+}
+
+/* Placeholder style */
+.custom-input::placeholder {
+  color: #cccccc; /* Set the placeholder text color to a light grey */
+}
+
+/* Remove focus effect */
+.custom-input:focus {
+  border-bottom: 2px solid #ffffff; /* Keep the border color the same on focus */
+  box-shadow: none; /* Remove any focus box-shadow */
+  outline: none; /* Ensures no outline appears on focus */
+}
+
+/* Specific for select element */
+select.custom-input {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  padding-left: 0; /* Adjust as needed */
+  padding-right: 0; /* Adjust as needed */
+  color: #ffffff; /* Set the text color to white */
+  background-color: transparent !important;
+  border-bottom: 2px solid #ffffff; /* Ensure select also has a bottom border */
+}
+
+/* Option style for select */
+select.custom-input option {
+  color: #000000; /* Set the dropdown options text color to black or your preferred color */
+}
+
+/* Adjust select dropdown background and text color */
+select.custom-input option {
+  background-color: #333333; /* Set the dropdown background color */
+  color: #ffffff; /* Ensure dropdown text color is visible */
+}
+
+/* Required label style */
+.required-label {
+  color: #ffffff; /* Set label text color to white */
+  display: block; /* Make the label take its own line */
+  margin-bottom: 4px; /* Space between label and input */
+  font-size: 0.9rem; /* Adjust font size */
+}
+
+.required-label::after {
+  content: ' *'; /* Add asterisk */
+  color: red; /* Set asterisk color to red */
+}
+
+/* Error message style */
+.error-message {
+  color: red; /* Set the error message text color to red */
+  font-size: 0.8rem; /* Adjust font size for error messages */
+  margin-top: -14px; /* Adjust to position the error message closer to the input */
+  margin-bottom: 10px; /* Add space after error message */
+}
+
+.address-card {
+  background-color: #1b1b2f;
+  color: #fafafa;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.address-card p {
+  margin: 0 0 10px;
+}
+
+.address-card strong {
+  color: #ffcc00; /* Accent color for the labels */
+}
+
+.btn-dark {
+  background-color: #333;
+  color: #fafafa;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.btn-dark:hover {
+  background-color: #555;
+}
+
+/* .custom-input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #2b2b3b;
+  color: #fafafa;
+} */
+
+.error-message {
+  color: #ff4d4d;
+  font-size: 0.9em;
+}
+
+h4 {
+  color: #ffcc00; /* Accent color for headings */
+}
