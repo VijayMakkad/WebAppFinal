@@ -357,57 +357,219 @@ const Account = () => {
           </Formik>
         ) : (
           <>
-            <div className="row">
-              <div className="col-lg-6">
-                <h4>Billing Addresses</h4>
+            <div className="row p-5">
+              <p
+                style={{
+                  color: 'white',
+                  fontSize: '14px',
+                  marginBottom: '0px',
+                  padding: '0px 0px 0px 50px',
+                }}
+              >
+                The following page will be used on the checkout page by default.
+              </p>
+              <div className="col-md-6 p-5">
+                <h3 style={{ fontWeight: '300', width: '90%' }}>
+                  Billing address
+                </h3>
                 {savedBillingAddresses.map((address, index) => (
-                  <div key={index} className="address-card">
-                    <p>
-                      <strong>Delivery Address:</strong>
-                    </p>
-                    <p>{address.street}</p>
-                    <p>{address.city}</p>
-                    <p>{address.state}</p>
-                    <p>{address.zip}</p>
-                    <p>{address.phone}</p>
-                    <p>{address.email}</p>
-                    <p>
-                      {address.firstName} {address.lastName}
-                    </p>
+                  <div key={index} className="row mt-5">
+                    <div className="col-md-6">
+                      <div className="row">
+                        <p className="py-0 mb-0" style={{ color: 'white' }}>
+                          DELIVERY ADDRESS
+                        </p>
+                        <p
+                          className="mt-0 py-0"
+                          style={{
+                            fontSize: '14px',
+                            color: '#ffcc00',
+                            width: '60%',
+                          }}
+                        >
+                          {address.street}
+                        </p>
+                      </div>
+                      <div className="row">
+                        <p className="py-0 mb-0" style={{ color: 'white' }}>
+                          STATE
+                        </p>
+                        <p
+                          className="mt-0 py-0"
+                          style={{ fontSize: '14px', color: '#ffcc00' }}
+                        >
+                          {address.state}
+                        </p>
+                      </div>
+                      <div className="row">
+                        <p className="py-0 mb-0" style={{ color: 'white' }}>
+                          CITY
+                        </p>
+                        <p
+                          className="mt-0 py-0"
+                          style={{ fontSize: '14px', color: '#ffcc00' }}
+                        >
+                          {address.city}
+                        </p>
+                      </div>
+                    </div>
+                    <div className="col-md-6">
+                      <div className="row">
+                        <p className="py-0 mb-0" style={{ color: 'white' }}>
+                          BILLING OPTIONS
+                        </p>
+                        <p
+                          className="mt-0 py-0"
+                          style={{ fontSize: '14px', color: '#ffcc00' }}
+                        >
+                          UPI
+                        </p>
+                      </div>
+                      <div className="row">
+                        <p className="py-0 mb-0" style={{ color: 'white' }}>
+                          PIN CODE
+                        </p>
+                        <p
+                          className="mt-0 py-0"
+                          style={{ fontSize: '14px', color: '#ffcc00' }}
+                        >
+                          {address.zip}
+                        </p>
+                      </div>
+                      <div className="row">
+                        <p className="py-0 mb-0" style={{ color: 'white' }}>
+                          CONTACT NUMBER
+                        </p>
+                        <p
+                          className="mt-0 py-0"
+                          style={{ fontSize: '14px', color: '#ffcc00' }}
+                        >
+                          {address.phone}
+                        </p>
+                      </div>
+                      <div className="row">
+                        <p className="py-0 mb-0" style={{ color: 'white' }}>
+                          EMAIL
+                        </p>
+                        <p
+                          className="mt-0 py-0"
+                          style={{ fontSize: '14px', color: '#ffcc00' }}
+                        >
+                          {address.email}
+                        </p>
+                      </div>
+                    </div>
                   </div>
                 ))}
-                <button
-                  className="btn btn-dark mt-2"
+                <a
+                  href=""
+                  style={{ color: '#ffcc00' }}
                   onClick={() => setIsFormVisible(true)}
                 >
                   ADD ANOTHER
-                </button>
+                </a>
               </div>
 
-              <div className="col-lg-6">
-                <h4>Shipping Addresses</h4>
-                {savedShippingAddresses.map((address, index) => (
-                  <div key={index} className="address-card">
-                    <p>
-                      <strong>Delivery Address:</strong>
-                    </p>
-                    <p>{address.street}</p>
-                    <p>{address.city}</p>
-                    <p>{address.state}</p>
-                    <p>{address.zip}</p>
-                    <p>{address.phone}</p>
-                    <p>{address.email}</p>
-                    <p>
-                      {address.firstName} {address.lastName}
-                    </p>
+              <div className="col-md-6 p-5">
+                <h3 style={{ fontWeight: '300', width: '90%' }}>
+                  Shipping address
+                </h3>
+                {savedBillingAddresses.map((address, index) => (
+                  <div key={index} className="row mt-5">
+                    <div className="col-md-6">
+                      <div className="row">
+                        <p className="py-0 mb-0" style={{ color: 'white' }}>
+                          DELIVERY ADDRESS
+                        </p>
+                        <p
+                          className="mt-0 py-0"
+                          style={{
+                            fontSize: '14px',
+                            color: '#ffcc00',
+                            width: '60%',
+                          }}
+                        >
+                          {address.street}
+                        </p>
+                      </div>
+                      <div className="row">
+                        <p className="py-0 mb-0" style={{ color: 'white' }}>
+                          STATE
+                        </p>
+                        <p
+                          className="mt-0 py-0"
+                          style={{ fontSize: '14px', color: '#ffcc00' }}
+                        >
+                          {address.state}
+                        </p>
+                      </div>
+                      <div className="row">
+                        <p className="py-0 mb-0" style={{ color: 'white' }}>
+                          CITY
+                        </p>
+                        <p
+                          className="mt-0 py-0"
+                          style={{ fontSize: '14px', color: '#ffcc00' }}
+                        >
+                          {address.city}
+                        </p>
+                      </div>
+                    </div>
+                    <div className="col-md-6">
+                      <div className="row">
+                        <p className="py-0 mb-0" style={{ color: 'white' }}>
+                          DELIVERY OPTIONS
+                        </p>
+                        <p
+                          className="mt-0 py-0"
+                          style={{ fontSize: '14px', color: '#ffcc00' }}
+                        >
+                          Standard Delivery
+                        </p>
+                      </div>
+                      <div className="row">
+                        <p className="py-0 mb-0" style={{ color: 'white' }}>
+                          PIN CODE
+                        </p>
+                        <p
+                          className="mt-0 py-0"
+                          style={{ fontSize: '14px', color: '#ffcc00' }}
+                        >
+                          {address.zip}
+                        </p>
+                      </div>
+                      <div className="row">
+                        <p className="py-0 mb-0" style={{ color: 'white' }}>
+                          CONTACT NUMBER
+                        </p>
+                        <p
+                          className="mt-0 py-0"
+                          style={{ fontSize: '14px', color: '#ffcc00' }}
+                        >
+                          {address.phone}
+                        </p>
+                      </div>
+                      <div className="row">
+                        <p className="py-0 mb-0" style={{ color: 'white' }}>
+                          EMAIL
+                        </p>
+                        <p
+                          className="mt-0 py-0"
+                          style={{ fontSize: '14px', color: '#ffcc00' }}
+                        >
+                          {address.email}
+                        </p>
+                      </div>
+                    </div>
                   </div>
                 ))}
-                <button
-                  className="btn btn-dark mt-2"
+                <a
+                  href=""
+                  style={{ color: '#ffcc00', }}
                   onClick={() => setIsFormVisible(true)}
                 >
                   ADD ANOTHER
-                </button>
+                </a>
               </div>
             </div>
           </>
