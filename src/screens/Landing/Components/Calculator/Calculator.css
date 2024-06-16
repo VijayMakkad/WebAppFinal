@@ -33,7 +33,6 @@ h4{
     font-weight: 200;
     font-size: 1em;
 }
-
 @media screen and (max-width:900px) {
     .calculator{
         width: 100%;

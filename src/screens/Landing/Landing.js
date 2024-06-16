@@ -41,7 +41,7 @@ export default function Landing() {
     container: '#three',
   });
 
-  const pathDiscrete = useTransform(scrollYProgress, [0, 0.3, 0.6, 0.9, 1], [0, 0.3, 0.6, 0.9, 1]);
+  const pathDiscrete = useTransform(scrollYProgress, [0.3, 0.5, 0.7, 0.9, 1], [0, 0.3, 0.6, 0.9, 1]);
 
   const data = [{
     heading: 'Save as Digital Gold',
@@ -277,7 +277,7 @@ export default function Landing() {
                       </div>
                       <div className="col-8" >
                         <svg width="100%" height="100%" viewBox="2500 2020 7500 8000">
-                          <motion.path d='M7086.4,2700 L5778.3,4250 L5019.6,6000 L4640.1,7750 L4573.7,9500'
+                          <motion.path d='M4573.7,9500 L4640.1,7750 L5019.6,6000 L5778.3,4250 L7086.4,2700'
                             stroke="white"  
                             fill="none"
                             strokeWidth={20}
