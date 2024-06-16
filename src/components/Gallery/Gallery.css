@@ -1,0 +1,17 @@
+.gallery-row {
+    height: 300px;
+    width: 1200px; /* Adjust the height as needed */
+    overflow: hidden; /* Hide overflow if images exceed the container's height */
+  }
+  
+  .gallery-item {
+    display: flex;
+    justify-content: center;
+    height: 100%;
+  }
+  
+  .gallery-image {
+    max-height: 100%; /* Ensure images do not exceed the container's height */
+    object-fit: cover; /* Ensure images cover the available space without distorting */
+  }
+  

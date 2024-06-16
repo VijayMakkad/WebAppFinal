@@ -1,50 +1,62 @@
-/* CategoryGrid.css */
-
 .category-grid {
-    margin-top: 2rem;
-    margin-bottom: 10rem;
-  }
-  
-  .first-column .first-row-30 {
-    height: 30vh; /* Adjust as needed */
-  }
-  
-  .first-column .second-row-70 {
-    height: 80vh; /* Adjust as needed */
-  }
-  
-  .second-column .first-row {
-    height: 60vh; /* Adjust as needed */
-  }
-  
-  .second-column .second-row {
-    height: 40vh; /* Adjust as needed */
-  }
+  margin-top: 2rem;
+  margin-bottom: 10rem;
+}
 
-  .pd-5{
-    padding-top: 0.5rem !important;
-  }
-  
-  .grid-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* Ensures the image covers the container */
-    border-radius: 15px;
-    padding-top: 1.5rem;
-  }
+.first-column .first-row-30 {
+  height: 30vh; /* Adjust as needed */
+}
 
+.first-column .second-row-70 {
+  height: 80vh; /* Adjust as needed */
+}
+
+.second-column .first-row {
+  height: 60vh; /* Adjust as needed */
+}
+
+.second-column .second-row {
+  height: 40vh; /* Adjust as needed */
+}
+
+.pd-5 {
+  padding-top: 0.5rem !important;
+}
+
+.grid-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures the image covers the container */
+  border-radius: 15px;
+  padding-top: 1.5rem;
+}
+
+.image-container {
+  position: relative;
+  cursor: pointer;
+}
+
+.category-label {
+  position: absolute;
+  bottom: 10px;
+  left: 15px;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+
+.new-row-sub {
+  margin-bottom: 1rem; /* Add spacing between images */
+  height: 50%; /* Adjust as needed */
+}
+
+@media (max-width: 768px) {
+  .first-column .first-row-30,
+  .first-column .second-row-70,
+  .second-column .first-row,
+  .second-column .second-row,
   .new-row-sub {
-    margin-bottom: 1rem; /* Add spacing between images */
-    height: 50%; /* Adjust as needed */
+    height: auto;
   }
-  
-  @media (max-width: 768px) {
-    .first-column .first-row-30,
-    .first-column .second-row-70,
-    .second-column .first-row,
-    .second-column .second-row,
-    .new-row-sub {
-      height: auto;
-    }
-  }
-  
+}

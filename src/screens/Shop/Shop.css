@@ -18,7 +18,7 @@
 }
 
 .item-title {
-  font-weight: bold;
+  font-weight:500;
   font-size: 2.5rem; /* Adjust size as needed */
   margin-bottom: 1rem;
   color: #000;
@@ -46,7 +46,7 @@
 }
 
 .info-left {
-  font-weight: bold;
+  font-weight: 500;
   font-size: 1.75rem;
 }
 
@@ -55,7 +55,7 @@
 }
 
 .info-bold {
-  font-weight: bold;
+  font-weight: 500;
   font-size: 1.75rem;
 }
 
