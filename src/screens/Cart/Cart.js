@@ -95,11 +95,11 @@ const ShoppingCart = () => {
             <div className="cart-items h-75" ref={cartRef}>
               {items.map((item, index) => (
                 <div className="item-border-top-bottom" key={index}>
-                  <div className="d-flex mb-3">
+                  <div className="d-flex">
                     <div className="col-md-8 d-flex">
                       <img
                         src={item.image}
-                        style={{ height: '6rem' }}
+                        style={{ height: '10rem',width:'10rem' }}
                         alt={item.name}
                       />
                       <div className="ms-3 flex-grow-1">
