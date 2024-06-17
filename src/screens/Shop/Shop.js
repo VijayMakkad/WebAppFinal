@@ -4,6 +4,7 @@ import "./Shop.css";
 import ImageGrid from "./ImageGrid";
 import CategoryGrid from "./CategoryGrid";
 import MainBg from "../Background/MainBg";
+import Gallery from "../../components/Gallery/Gallery";
 
 const carouselItems = [
   "/assets/dashboard_carousel.png",
@@ -114,17 +115,7 @@ const Shop = () => {
           <div className="info-row">
             <span className="info-bold">Follow us on instagram</span>
           </div>
-          <Row className="gallery-row">
-            {productItems.map((item, index) => (
-              <Col md={3} sm={6} xs={12} key={index} className="gallery-item">
-                <img
-                  src={item}
-                  alt={`Gallery Item ${index}`}
-                  className="img-fluid gallery-image"
-                />
-              </Col>
-            ))}
-          </Row>
+          <Gallery productItems={productItems} />
         </Container>
       </div>
     </MainBg>

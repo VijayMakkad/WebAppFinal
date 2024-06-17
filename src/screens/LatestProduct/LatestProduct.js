@@ -1,24 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Container, Row, Col, Form, Button, Dropdown } from "react-bootstrap";
 import "./LatestProduct.css";
 import MainBg from "../Background/MainBg";
-
-const images = [
-  { src: "/assets/prod1.png", name: "Product Name 1", price: "$100" },
-  { src: "/assets/prod4.png", name: "Product Name 2", price: "$200" },
-  { src: "/assets/prod3.png", name: "Product Name 3", price: "$300" },
-  { src: "/assets/prod1.png", name: "Product Name 1", price: "$100" },
-  { src: "/assets/prod4.png", name: "Product Name 2", price: "$200" },
-  { src: "/assets/prod3.png", name: "Product Name 3", price: "$300" },
-  { src: "/assets/prod1.png", name: "Product Name 1", price: "$100" },
-  { src: "/assets/prod4.png", name: "Product Name 2", price: "$200" },
-  { src: "/assets/prod1.png", name: "Product Name 3", price: "$300" }
-];
 
 const LatestProduct = () => {
   const [priceRange, setPriceRange] = useState(50);
   const [isOnSale, setIsOnSale] = useState(false);
   const [isInStock, setIsInStock] = useState(false);
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    const storedProducts = localStorage.getItem('products');
+    if (storedProducts) {
+      setProducts(JSON.parse(storedProducts));
+    }
+  }, []);
 
   const handleRangeChange = (e) => {
     setPriceRange(e.target.value);
@@ -47,7 +43,7 @@ const LatestProduct = () => {
             </Form>
             <Dropdown className="mt-4 dropdown-container">
               <Dropdown.Toggle variant="secondary" id="dropdown-basic">
-              Shop by
+                Shop by
               </Dropdown.Toggle>
               <Dropdown.Menu>
                 <Dropdown.Item href="#/action-1">Category 1</Dropdown.Item>
@@ -57,7 +53,7 @@ const LatestProduct = () => {
             </Dropdown>
             <Dropdown className="mt-4 dropdown-container">
               <Dropdown.Toggle variant="secondary" id="dropdown-basic">
-              Sort by
+                Sort by
               </Dropdown.Toggle>
               <Dropdown.Menu>
                 <Dropdown.Item href="#/action-1">Category 1</Dropdown.Item>
@@ -66,7 +62,15 @@ const LatestProduct = () => {
               </Dropdown.Menu>
             </Dropdown>
             <div className="slider-container mt-4">
-              <input type="range" className="form-range" id="customRange1" min="1" max="100" value={priceRange} onChange={handleRangeChange} />
+              <input
+                type="range"
+                className="form-range"
+                id="customRange1"
+                min="1"
+                max="100"
+                value={priceRange}
+                onChange={handleRangeChange}
+              />
               <div className="price-range">Price Range: ${priceRange}</div>
             </div>
             <div className="toggle-section mt-4">
@@ -82,12 +86,12 @@ const LatestProduct = () => {
           {/* Main Content Section */}
           <Col md={9} className="main-content">
             <Row>
-              {images.map((image, index) => (
+              {products.map((product, index) => (
                 <Col key={index} md={4} className="product-col">
-                  <img src={image.src} alt={`Product ${index + 1}`} className="img-fluid product-image" />
+                  <img src={product.image} alt={`Product ${index + 1}`} className="img-fluid product-image" />
                   <div className="product-text mt-4">
-                    <h5>{image.name}</h5>
-                    <p className="price">{image.price}</p>
+                    <h5>{product.name}</h5>
+                    <p className="price">100$</p>
                   </div>
                 </Col>
               ))}
