@@ -288,7 +288,6 @@ img{
         margin-bottom: 3rem;
     }
     .card{
-        display: grid;
         grid-template-columns: repeat(3, auto);
         grid-gap: 2rem;
     }

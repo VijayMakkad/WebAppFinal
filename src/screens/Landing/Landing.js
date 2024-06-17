@@ -41,7 +41,7 @@ export default function Landing() {
     container: '#three',
   });
 
-  const pathDiscrete = useTransform(scrollYProgress, [0, 0.3, 0.6, 0.9, 1], [0, 0.3, 0.6, 0.9, 1]);
+  const pathDiscrete = useTransform(scrollYProgress, [0.3, 0.5, 0.7, 0.9, 1], [0, 0.3, 0.6, 0.9, 1]);
 
   const data = [{
     heading: 'Save as Digital Gold',
@@ -103,18 +103,36 @@ export default function Landing() {
         scrub: 2,
       }
     })
-    timeline
+
+    if (window.innerWidth > 800) {
+      timeline
+        .addLabel('card-1-display')
+        .to('#card-1,#svg-1', { display: 'flex' })
+        .to('#card-1,#svg-1', { display: 'none' })
+        .addLabel('card-2-display')
+        .to('#card-2,#svg-2', { display: 'flex' })
+        .to('#card-2,#svg-2', { display: 'none' })
+        .addLabel('card-3-display')
+        .to('#card-3,#svg-3', { display: 'flex' })
+        .to('#card-3,#svg-3', { display: 'none' })
+        .addLabel('card-4-display')
+        .to('#card-4,#svg-4', { display: 'flex' })
+    }
+
+    else {
+      timeline
       .addLabel('card-1-display')
-      .to('#card-1,#svg-1', { display: 'flex' })
-      .to('#card-1,#svg-1', { display: 'none' })
+      .to('#card-1', { display: 'flex' })
+      .to('#card-1', { display: 'none' })
       .addLabel('card-2-display')
-      .to('#card-2,#svg-2', { display: 'flex' })
-      .to('#card-2,#svg-2', { display: 'none' })
+      .to('#card-2', { display: 'flex' })
+      .to('#card-2', { display: 'none' })
       .addLabel('card-3-display')
-      .to('#card-3,#svg-3', { display: 'flex' })
-      .to('#card-3,#svg-3', { display: 'none' })
+      .to('#card-3', { display: 'flex' })
+      .to('#card-3', { display: 'none' })
       .addLabel('card-4-display')
-      .to('#card-4,#svg-4', { display: 'flex' })
+      .to('#card-4', { display: 'flex' })
+    }
 
   })
   useGSAP(() => {
@@ -259,7 +277,7 @@ export default function Landing() {
                       </div>
                       <div className="col-8" >
                         <svg width="100%" height="100%" viewBox="2500 2020 7500 8000">
-                          <motion.path d='M7086.4,2700 L5778.3,4250 L5019.6,6000 L4640.1,7750 L4573.7,9500'
+                          <motion.path d='M4573.7,9500 L4640.1,7750 L5019.6,6000 L5778.3,4250 L7086.4,2700'
                             stroke="white"  
                             fill="none"
                             strokeWidth={20}
