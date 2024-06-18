@@ -86,15 +86,19 @@ const LatestProduct = () => {
           {/* Main Content Section */}
           <Col md={9} className="main-content">
             <Row>
-              {products.map((product, index) => (
-                <Col key={index} md={4} className="product-col">
-                  <img src={product.image} alt={`Product ${index + 1}`} className="img-fluid product-image" />
-                  <div className="product-text mt-4">
-                    <h5>{product.name}</h5>
-                    <p className="price">100$</p>
-                  </div>
-                </Col>
-              ))}
+              {products.length > 0 ? (
+                products.map((product, index) => (
+                  <Col key={index} md={4} className="product-col">
+                    <img src={product.image} alt={`Product ${index + 1}`} className="img-fluid product-image" />
+                    <div className="product-text mt-4">
+                      <h5>{product.name}</h5>
+                      <p className="price">100$</p>
+                    </div>
+                  </Col>
+                ))
+              ) : (
+                <p>No products to show</p>
+              )}
             </Row>
           </Col>
         </Row>
