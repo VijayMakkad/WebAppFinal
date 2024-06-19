@@ -15,7 +15,8 @@ const initialState = {
 
 export const loginUser = createAsyncThunk('auth/loginUser', async (credentials) => {
     console.log('loggin in', credentials)
-    const response = await api.post('/login', credentials);
+    const data = {...credentials,device_token:'123456'}
+    const response = await api.post('/login', data);
     if (response.statusText=='OK') {
         return response;
     } else {
