@@ -6,6 +6,11 @@ import * as Yup from 'yup';
 
 import "./Login.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { useDispatch } from "react-redux";
+import { loginUser, setPhone, signupUser, verifyOTP } from "../../features/auth/authSlice";
+import { useNavigate } from "react-router";
+
+
 
 
 const isDateInPast = (date) => {
@@ -15,6 +20,10 @@ const isDateInPast = (date) => {
 function Login({ onHide, show }) {
   const [login, setLogin] = useState('Login');
   const [prev, setPrev] = useState('Login')
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate()
+
   const loginValidation = Yup.object().shape({
      phone: Yup.string()
       .matches(/^\d+$/, 'Phone number must contain only numbers')
@@ -34,6 +43,10 @@ function Login({ onHide, show }) {
       .test('is-past-date', 'Date of birth must be in the past', value => isDateInPast(value))
   })
 
+  const otpValidation = Yup.object().shape({
+    verification_code: Yup.string().matches(/^\d{6}$/, 'OTP must be exactly 6 digits').required('OTP is required')
+  })
+
   const initialLogin = {
     phone:''
   }
@@ -44,20 +57,49 @@ function Login({ onHide, show }) {
     dob: ''
   };
 
-  const onSignupSubmit = (values, { setSubmitting }) => {
-    console.log('Form data', values);
+  const initialOtp = {
+    verification_code:''
+  }
+
+  const onSignupSubmit = async (values, { setSubmitting }) => {
+    const { phone, ...data } = values
+    console.log('Form data', values, phone);
     setSubmitting(false);
-    // Assuming you want to navigate to OTP screen after successful submission
-    setLogin('OTP');
-    setPrev('Signup');
+    const actionResult = await dispatch(signupUser(values));
+    if (signupUser.fulfilled.match(actionResult)) {
+      dispatch(setPhone(phone));
+      setLogin('OTP');
+      setPrev('Signup');
+    }
+    else {
+      console.log('Login failed:', actionResult.error.message);
+    }
   };
 
-  const onLoginSubmit = (values, { setSubmitting }) => {
-    console.log('Form data', values);
+  const onLoginSubmit = async (values, { setSubmitting }) => {
+    const { phone, ...data } = values
+    console.log('Form data', values, phone);
     setSubmitting(false);
-    setLogin('OTP') 
-    setPrev('Login')
+    const actionResult = await dispatch(loginUser(values));
+    if (loginUser.fulfilled.match(actionResult)) {
+        dispatch(setPhone(phone));
+        setLogin('OTP');
+        setPrev('Login');
+    } else {
+      console.log('Login failed:', actionResult.error);
+    }
   };
+
+  const onOtpSubmit = async (values, { setSubmitting }) => {
+    setSubmitting(false);
+    const actionResult = await dispatch(verifyOTP(values));
+    if (verifyOTP.fulfilled.match(actionResult)) {
+        console.log('successful login')
+        navigate('/dashboard')
+    } else {
+      console.log('Login failed:', actionResult.error);
+    }
+  }
     
   if(login=='Login')
 {  return (
@@ -142,39 +184,50 @@ function Login({ onHide, show }) {
                 </h1>
                 <p>Welcome Back, Please login to your account</p>
               </div>
-                <form className="d-flex flex-column justify-content-evenly" style={{flexGrow:1}}>
-                  <div className="form-group" style={{ marginBottom: "10px" }}>
-                    <input type="text" className="form-control" placeholder="OTP" />
-                  </div>
-                  
-                  <div className="form-check mb-3">
-                    <input
-                      type="checkbox"
-                      className="form-check-input"
-                      id="remember"
-                    />
-                    <label className="form-check-label" htmlFor="remember">
-                      Remember me
-                    </label>
-                  </div>
-                  <div className="d-flex justify-content-center">                    
-                    <button
-                      type="button"
-                      className="btn btn-dark"
-                      style={{ marginRight: "10px", width: "40%" }}
-                    >
-                      Login
-                    </button>
-                    <button
-                      type="button"
-                      className="btn btn-outline-dark"
-                      style={{ marginRight: "10px", width: "40%" }}
-                      onClick={()=>setLogin(prev)}
-                    >
-                      Back
-                    </button>
-                  </div>
-                </form>
+                <Formik
+                  initialValues={initialOtp}
+                  validationSchema={otpValidation}
+                  onSubmit={onOtpSubmit}
+                  validateOnMount={true}
+                >
+                  {({ isSubmitting, isValid }) => (
+                    <Form style={{flexGrow:1}} className="d-flex flex-column justify-content-evenly" >
+                      <div className="form-group" style={{ marginBottom: "10px" }}>
+                        <Field type="number" id="verification_code" name="verification_code" className="form-control" placeholder="OTP" />
+                        <ErrorMessage style={{color:'black', marginTop:'10px', textAlign:'center'}} name="verification_code" component="div" />
+                      </div>
+                      <div className="form-check mb-3">
+                        <input
+                          type="checkbox"
+                          className="form-check-input"
+                          id="remember"
+                        />
+                        <label className="form-check-label" htmlFor="remember">
+                          Remember me
+                        </label>
+                      </div>
+                      
+                      <div className="d-flex justify-content-center">                  
+                        <button
+                          type="submit"
+                          className="btn btn-dark"
+                          style={{ marginRight: "10px", width: "40%" }}
+                          disabled={isSubmitting || !isValid}
+                        >
+                          Login
+                        </button>
+                        <button
+                          type="button"
+                          className="btn btn-outline-dark"
+                          style={{ marginRight: "10px", width: "40%" }}
+                          onClick={()=>setLogin(prev)}
+                        >
+                          Back
+                        </button>
+                      </div>
+                    </Form>
+                  )}
+                </Formik>
               </div>
               <div className="login-right col-lg-6 d-flex align-items-center justify-content-center">
                 <img
