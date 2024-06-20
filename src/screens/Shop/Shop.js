@@ -90,7 +90,7 @@ const Shop = () => {
               <Button variant="dark" className="short-button">Shop Now</Button>
             </Col>
             <Col md={2} className="trending-text"></Col>
-            <Col md={4} className="trending-image">
+            <Col md={4} className="trending-image gift-image">
               <img src="/assets/shop/trending.png" alt="trending" className="img-fluid" />
             </Col>
           </Row>
