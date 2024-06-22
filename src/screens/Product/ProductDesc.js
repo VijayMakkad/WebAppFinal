@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import { useDispatch } from 'react-redux';
-import  {addToCart} from '../../features/cart/cartSlice';
+import { addToCart } from '../../features/cart/cartSlice';
 import "./product_desc.css";
 import { faShoppingCart, faStar, faStarHalfAlt } from "@fortawesome/free-solid-svg-icons";
 import { faFacebookF, faTwitter, faInstagram, faWhatsapp, faPinterest } from "@fortawesome/free-brands-svg-icons";
@@ -9,12 +9,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import SimilarProducts from "./SimilarProduct";
 import TabSection from "./TabSection";
 import MainBg from "../Background/MainBg";
+import Modal from './Modal';
 
 const ProductDescPage = () => {
   const { state } = useLocation();
   const dispatch = useDispatch();
   const [product, setProduct] = useState(state.product);
   const [imgId, setImgId] = useState(1);
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     const defaultTab = document.querySelector(".tab-item.active");
@@ -30,7 +32,6 @@ const ProductDescPage = () => {
   };
 
   useEffect(() => {
-    console.log(product);
     window.addEventListener("resize", slideImage);
     slideImage();
     return () => {
@@ -39,18 +40,29 @@ const ProductDescPage = () => {
   }, [imgId]);
 
   const handleAddToCart = () => {
+    setShowModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
+
+  const handleSaveModal = () => {
+    const weight = document.getElementById('weight').value;
+    const purity = document.getElementById('purity').value;
+    const size = document.getElementById('size').value;
     const quantityInput = document.querySelector('.purchase-info input[type="number"]');
     const cartItem = {
       product_id: product.product.product_id,
-      gold_required: product.product_params[0].product_weight,
+      gold_required: weight,
       name: product.product.name,
-      purity: product.product_params[0].product_purity,
-      size_id: product.product_params[0].product_size,
+      purity: purity,
+      size_id: size,
       quantity: quantityInput.value,
       image: product.product.image,
     };
-    console.log(cartItem);
     dispatch(addToCart(cartItem));
+    setShowModal(false);
   };
 
   return (
@@ -130,6 +142,12 @@ const ProductDescPage = () => {
         </div>
         <TabSection />
         <SimilarProducts />
+        <Modal
+          show={showModal}
+          onClose={handleCloseModal}
+          onSave={handleSaveModal}
+          productParams={product.product_params}
+        />
       </div>
     </MainBg>
   );
