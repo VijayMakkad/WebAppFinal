@@ -1,0 +1,29 @@
+#footer{
+    position: relative;
+    height: 300px;
+    width: 100%;
+}
+
+#fixed-footer-area {
+    position: fixed;
+    bottom: 0;
+    height: 300px;
+    width: 100%;
+    padding: 10px 60px;
+}
+
+#footer{
+    h3{
+        font-size: 1em;
+        font-weight: 200;
+    }
+}
+
+@media screen and (max-width:800px) {
+    #footer{
+
+        h3{
+            font-size:0.8em;
+        }
+    }
+}

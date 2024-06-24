@@ -7,7 +7,7 @@ import * as Yup from 'yup';
 import "./Login.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useDispatch } from "react-redux";
-import { loginUser, setPhone, signupUser, verifyOTP } from "../../features/auth/authSlice";
+import { loginUser, signupUser, verifyOTP } from "../../features/auth/authSlice";
 import { useNavigate } from "react-router";
 
 
@@ -62,12 +62,11 @@ function Login({ onHide, show }) {
   }
 
   const onSignupSubmit = async (values, { setSubmitting }) => {
-    const { phone, ...data } = values
+    const { phone } = values
     console.log('Form data', values, phone);
     setSubmitting(false);
     const actionResult = await dispatch(signupUser(values));
     if (signupUser.fulfilled.match(actionResult)) {
-      dispatch(setPhone(phone));
       setLogin('OTP');
       setPrev('Signup');
     }
@@ -82,7 +81,6 @@ function Login({ onHide, show }) {
     setSubmitting(false);
     const actionResult = await dispatch(loginUser(values));
     if (loginUser.fulfilled.match(actionResult)) {
-        dispatch(setPhone(phone));
         setLogin('OTP');
         setPrev('Login');
     } else {

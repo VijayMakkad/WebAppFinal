@@ -108,3 +108,60 @@ body,html {
     height: 100vh;
     padding: 50px 30px;
 }
+
+#five {
+    height: 100vh;
+    padding: 50px 60px;
+
+    #ending-left{
+        position: relative;
+
+        #easygoldby{
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        
+    }
+
+    .appstore-card{
+        width: 180px;
+        height: 65px;
+        background-color: white;
+        border-radius: 10px;
+        margin: 10px;
+    }
+
+    .appstore-card-text{
+        margin-left: 5px;
+        p{
+            font-size: 15px;
+            margin: 0;
+        }
+        h2{
+            font-size: 15px;
+            color: black;
+            margin: 0;
+        }
+    }
+
+    .socials-landing{
+        margin-top: 50px;
+    }
+    .social-icons-landing{
+        margin: 2.5px;
+        padding: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+        border: 1px solid white;
+    }
+}
+
+@media screen and (max-width:800px) {
+    #five{
+        padding:50px 10px;
+    }
+    
+}
