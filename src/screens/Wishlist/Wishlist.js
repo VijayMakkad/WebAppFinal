@@ -1,33 +1,32 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Container, Row, Col, Card, Button } from "react-bootstrap";
-import { FaHeart, FaRegHeart } from "react-icons/fa";
+import { FaTimes } from "react-icons/fa";
 import "./Wishlist.css";
 import MainBg from "../../screens/Background/MainBg";
-
-const wishlistItems = [
-  "/assets/prod1.png",
-  "/assets/prod2.png",
-  "/assets/prod3.png",
-  "/assets/prod4.png",
-  "/assets/prod1.png",
-];
+import {
+  fetchWishlist,
+  removeFromWishlist,
+} from "../../features/wishlist/wishlistSlice";
 
 const Wishlist = () => {
-  const [likedItems, setLikedItems] = useState(
-    new Array(wishlistItems.length).fill(false)
-  );
+  const dispatch = useDispatch();
+  const wishlist = useSelector((state) => state.wishlist);
+  const { items, status } = wishlist;
 
-  const toggleLike = (index) => {
-    setLikedItems((prev) => {
-      const newLikes = [...prev];
-      newLikes[index] = !newLikes[index];
-      return newLikes;
+  useEffect(() => {
+    dispatch(fetchWishlist());
+  }, [dispatch, items.length]);
+
+  const handleDelete = (productId) => {
+    dispatch(removeFromWishlist(productId)).then(() => {
+      dispatch(fetchWishlist());
     });
   };
 
   return (
     <MainBg>
-      <Container fluid className="wishlist-page-wl">
+      <div fluid className="wishlist-page-wl">
         <Row className="my-4">
           <Col>
             <Card className="wishlist-card-wl">
@@ -42,7 +41,9 @@ const Wishlist = () => {
                     </h5>
                   </Col>
                 </Row>
-                {wishlistItems.length === 0 ? (
+                {status === "loading" ? (
+                  <h5>Loading...</h5>
+                ) : items.length === 0 ? (
                   <Row className="justify-content-center">
                     <Col className="text-center">
                       <div className="wishlist-empty-wl">
@@ -60,36 +61,40 @@ const Wishlist = () => {
                   </Row>
                 ) : (
                   <Row>
-                    {wishlistItems.map((item, index) => (
-                      <Col key={index} md={6} sm={6} className="mb-4">
+                    {items.map((item, index) => (
+                      <Col key={index} md={4} sm={12} className="mb-4">
                         <Card className="wishlist-item-card-wl">
-                          <div
-                            className="heart-icon-wl"
-                            onClick={() => toggleLike(index)}
-                          >
-                            {likedItems[index] ? (
-                              <FaRegHeart className="heart-outline-wl" />
-                            ) : (
-                              <FaHeart className="heart-filled-wl" />
-                            )}
-                          </div>
-                          <Card.Img
-                            variant="top"
-                            src={item}
-                            className="wishlist-item-img-wl"
-                          />
-
-                          <Card.Body className="card-body-flex-wl">
-                            <Card.Title>Product {index + 1}</Card.Title>
-                            <Card.Text>
-                              This is a description of product {index + 1}.
-                            </Card.Text>
-                            <Button
-                              variant="outline-dark"
-                              className="add-button-wl"
+                          <div className="image-container-wl">
+                            <Card.Img
+                              variant="top"
+                              src={item.image}
+                              className="wishlist-item-img-wl"
+                            />
+                            <div
+                              className="delete-icon-wl"
+                              onClick={() => handleDelete(item.product_id)}
                             >
-                              Add to Cart
-                            </Button>
+                              <FaTimes className="cross-icon-wl" />
+                            </div>
+                          </div>
+                          <Card.Body className="card-body-flex-wl">
+                            <div className="item-details-wl">
+                              <div>
+                                <Card.Title className="card-title-wl">
+                                  {item.name}
+                                </Card.Title>
+                                <Card.Text className="product-id-wl">
+                                  ID: {item.product_id}
+                                </Card.Text>
+                              </div>
+                              <Button
+                                variant="outline-dark"
+                                className="add-button-wl"
+                                // onClick={}
+                              >
+                                Add to Cart
+                              </Button>
+                            </div>
                           </Card.Body>
                         </Card>
                       </Col>
@@ -100,7 +105,7 @@ const Wishlist = () => {
             </Card>
           </Col>
         </Row>
-      </Container>
+      </div>
     </MainBg>
   );
 };
