@@ -1,29 +1,22 @@
 import React, { useState, useEffect } from "react";
-
+import { useLocation } from "react-router-dom";
+import { useDispatch } from 'react-redux';
+import { addToCart } from '../../features/cart/cartSlice';
 import "./product_desc.css";
-import {
-  faShoppingCart,
-  faUser,
-  faSearch,
-  faStar,
-  faStarHalfAlt,
-} from "@fortawesome/free-solid-svg-icons";
-import {
-  faFacebookF,
-  faTwitter,
-  faInstagram,
-  faWhatsapp,
-  faPinterest,
-} from "@fortawesome/free-brands-svg-icons";
+import { faShoppingCart, faStar, faStarHalfAlt } from "@fortawesome/free-solid-svg-icons";
+import { faFacebookF, faTwitter, faInstagram, faWhatsapp, faPinterest } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import SimilarProducts from "./SimilarProduct";
 import TabSection from "./TabSection";
-import ProductPage from "./Product";
 import MainBg from "../Background/MainBg";
+import Modal from './Modal';
 
 const ProductDescPage = () => {
-  const [activeTab, setActiveTab] = useState("descriptionContent");
+  const { state } = useLocation();
+  const dispatch = useDispatch();
+  const [product, setProduct] = useState(state.product);
   const [imgId, setImgId] = useState(1);
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     const defaultTab = document.querySelector(".tab-item.active");
@@ -33,17 +26,9 @@ const ProductDescPage = () => {
     document.getElementById("tabDivider").style.backgroundColor = "yellow";
   }, []);
 
-  const showTab = (tabId) => {
-    setActiveTab(tabId);
-  };
-
   const slideImage = () => {
-    const displayWidth = document.querySelector(
-      ".img-showcase img:first-child"
-    ).clientWidth;
-    document.querySelector(".img-showcase").style.transform = `translateX(${
-      -(imgId - 1) * displayWidth
-    }px)`;
+    const displayWidth = document.querySelector(".img-showcase img:first-child").clientWidth;
+    document.querySelector(".img-showcase").style.transform = `translateX(${-(imgId - 1) * displayWidth}px)`;
   };
 
   useEffect(() => {
@@ -54,29 +39,47 @@ const ProductDescPage = () => {
     };
   }, [imgId]);
 
+  const handleAddToCart = () => {
+    setShowModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
+
+  const handleSaveModal = () => {
+    const weight = document.getElementById('weight').value;
+    const purity = document.getElementById('purity').value;
+    const size = document.getElementById('size').value;
+    const quantityInput = document.querySelector('.purchase-info input[type="number"]');
+    const cartItem = {
+      product_id: product.product.product_id,
+      gold_required: weight,
+      name: product.product.name,
+      purity: purity,
+      size_id: size,
+      quantity: quantityInput.value,
+      image: product.product.image,
+    };
+    dispatch(addToCart(cartItem));
+    setShowModal(false);
+  };
+
   return (
     <MainBg>
       <div id="product">
         <div className="white-divider"></div>
-
         <div className="card-wrapper">
           <div className="card" style={{ display: "contents" }}>
             {/* card left */}
             <div className="img-select">
               {["1", "2", "3", "4"].map((id) => (
                 <div className="img-item" key={id}>
-                  <a
-                    href="#"
-                    data-id={id}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      setImgId(id);
-                    }}
-                  >
-                    <img
-                      src={`../assets/prod${id}.png`}
-                      alt={`product image ${id}`}
-                    />
+                  <a href="#" data-id={id} onClick={(e) => {
+                    e.preventDefault();
+                    setImgId(id);
+                  }}>
+                    <img src={product.product.image} alt={`product image ${id}`} />
                   </a>
                 </div>
               ))}
@@ -85,11 +88,7 @@ const ProductDescPage = () => {
               <div className="img-display">
                 <div className="img-showcase">
                   {["1", "2", "3", "4"].map((id) => (
-                    <img
-                      src={`../assets/prod${id}.png`}
-                      alt={`product image ${id}`}
-                      key={id}
-                    />
+                    <img src={product.product.image} alt={`product image ${id}`} key={id} />
                   ))}
                 </div>
               </div>
@@ -97,7 +96,7 @@ const ProductDescPage = () => {
 
             {/* card right */}
             <div className="product-content">
-              <h2 className="product-title">Lira Earrings</h2>
+              <h2 className="product-title">{product.product.name}</h2>
               <div className="product-rating">
                 {[...Array(4)].map((_, i) => (
                   <FontAwesomeIcon key={i} icon={faStar} />
@@ -107,34 +106,19 @@ const ProductDescPage = () => {
               </div>
 
               <div className="product-detail">
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo
-                  eveniet veniam tempora fuga tenetur placeat sapiente architecto
-                  illum soluta consequuntur, aspernatur quidem at sequi ipsa!
-                </p>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Consequatur, perferendis eius. Dignissimos, labore suscipit.
-                  Unde.
-                </p>
+                <p>{product.product.product_details}</p>
               </div>
 
               <div className="purchase-info">
                 <input type="number" min="0" defaultValue="1" />
-                <button type="button" className="btn">
+                <button type="button" className="btn" onClick={handleAddToCart}>
                   Add to Cart <FontAwesomeIcon icon={faShoppingCart} />
                 </button>
               </div>
 
               <div className="social-links">
                 <p>Share At:</p>
-                {[
-                  faFacebookF,
-                  faTwitter,
-                  faInstagram,
-                  faWhatsapp,
-                  faPinterest,
-                ].map((icon, index) => (
+                {[faFacebookF, faTwitter, faInstagram, faWhatsapp, faPinterest].map((icon, index) => (
                   <a href="#" key={index}>
                     <FontAwesomeIcon icon={icon} />
                   </a>
@@ -143,25 +127,27 @@ const ProductDescPage = () => {
               <div className="product-ul">
                 <ul>
                   <li>
-                    <span style={{ color: "yellow" }}>SKU:</span> <span>12</span>
+                    <span style={{ color: "yellow" }}>SKU:</span> <span>{product.product.product_id}</span>
                   </li>
                   <li>
-                    <span style={{ color: "yellow" }}>Available:</span>{" "}
-                    <span>in stock</span>
+                    <span style={{ color: "yellow" }}>Available:</span> <span>{product.product.status || "In stock"}</span>
                   </li>
                   <li>
-                    <span style={{ color: "yellow" }}>Category:</span>{" "}
-                    <span>Fashion, Style</span>
+                    <span style={{ color: "yellow" }}>Category:</span> <span>{product.product.category_name}</span>
                   </li>
                 </ul>
               </div>
             </div>
           </div>
         </div>
-        {/* <ProductPage/> */}
         <TabSection />
-
         <SimilarProducts />
+        <Modal
+          show={showModal}
+          onClose={handleCloseModal}
+          onSave={handleSaveModal}
+          productParams={product.product_params}
+        />
       </div>
     </MainBg>
   );

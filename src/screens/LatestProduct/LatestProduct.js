@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Container, Row, Col, Form, Button, Dropdown } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 import "./LatestProduct.css";
 import MainBg from "../Background/MainBg";
 
@@ -8,6 +9,7 @@ const LatestProduct = () => {
   const [isOnSale, setIsOnSale] = useState(false);
   const [isInStock, setIsInStock] = useState(false);
   const [products, setProducts] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const storedProducts = localStorage.getItem('products');
@@ -26,6 +28,16 @@ const LatestProduct = () => {
 
   const toggleInStock = () => {
     setIsInStock(!isInStock);
+  };
+
+  const handleProductClick = (productId) => {
+    console.log(productId);
+    fetch(`http://127.0.0.1:8000/api/product/${productId}`)
+      .then(response => response.json())
+      .then(data => {
+        navigate('/product', { state: { product: data } });
+      })
+      .catch(error => console.error('Error fetching product details:', error));
   };
 
   return (
@@ -88,11 +100,11 @@ const LatestProduct = () => {
             <Row>
               {products.length > 0 ? (
                 products.map((product, index) => (
-                  <Col key={index} md={4} className="product-col">
+                  <Col key={index} md={4} className="product-col" onClick={() => handleProductClick(product.product_id)}>
                     <img src={product.image} alt={`Product ${index + 1}`} className="img-fluid product-image" />
                     <div className="product-text mt-4">
                       <h5>{product.name}</h5>
-                      <p className="price">100$</p>
+                      <p className="price">{product.category_name}</p>
                     </div>
                   </Col>
                 ))
