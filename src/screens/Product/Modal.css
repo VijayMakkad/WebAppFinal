@@ -25,6 +25,9 @@
   
   .add-to-cart-form-group {
     margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
   }
   
   .add-to-cart-form-group label {
@@ -45,4 +48,35 @@
   }
   .btn{
     color: white;
+  }
+  .dropdown-container {
+    width: 100%;
+
+    border: 1px solid white; 
+  }
+  
+  .dropdown-container .dropdown-toggle {
+    background: transparent;
+    border: 1px solid white; 
+    width: 50%; 
+    color: white;
+    display: flex;
+    justify-content: space-between; 
+  }
+  
+  .dropdown-container .dropdown-menu {
+    width: 100%; 
+  }
+  
+  .dropdown-container .dropdown-item {
+    color: black; 
+  }
+  #dropdown-weight, #dropdown-size, #dropdown-purity{
+    color: rgb(255, 255, 255);
+    border: 1px solid white;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    width: 150px;
+    text-align: center;
   }
