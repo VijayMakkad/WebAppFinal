@@ -17,7 +17,9 @@ const isDateInPast = (date) => {
   return new Date(date) < new Date();
 };
 
+
 function Login({ onHide, show }) {
+  const[phone,setPhone] = useState('')
   const [login, setLogin] = useState('Login');
   const [prev, setPrev] = useState('Login')
 
@@ -69,6 +71,7 @@ function Login({ onHide, show }) {
     if (signupUser.fulfilled.match(actionResult)) {
       setLogin('OTP');
       setPrev('Signup');
+      setPhone(phone);
     }
     else {
       console.log('Login failed:', actionResult.error.message);
@@ -83,6 +86,7 @@ function Login({ onHide, show }) {
     if (loginUser.fulfilled.match(actionResult)) {
         setLogin('OTP');
         setPrev('Login');
+        setPhone(phone);
     } else {
       console.log('Login failed:', actionResult.error);
     }
@@ -90,7 +94,7 @@ function Login({ onHide, show }) {
 
   const onOtpSubmit = async (values, { setSubmitting }) => {
     setSubmitting(false);
-    const actionResult = await dispatch(verifyOTP(values));
+    const actionResult = await dispatch(verifyOTP({...values,phone_number:phone}));
     if (verifyOTP.fulfilled.match(actionResult)) {
         console.log('successful login')
         navigate('/dashboard')

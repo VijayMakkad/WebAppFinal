@@ -115,6 +115,7 @@ body,html {
 
     #ending-left{
         position: relative;
+        background-color: red;
 
         #easygoldby{
             position: absolute;

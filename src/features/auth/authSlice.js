@@ -5,8 +5,6 @@ import api from '../../utils/apiHandler'
 // Initial state for the auth slice
 const initialState = {
   user: null,
-  phone:null,
-  token: null,
   status: 'idle',
   error: null,
   message:null
@@ -35,9 +33,7 @@ export const signupUser = createAsyncThunk('auth/signupUser', async (credentials
     }
 });
 
-export const verifyOTP = createAsyncThunk('auth/verifyOTP', async (otp, { getState }) => {
-    const { phone } = getState().auth; 
-    const data = { ...otp, phone_number: phone }
+export const verifyOTP = createAsyncThunk('auth/verifyOTP', async (data, { getState }) => {
     console.log('otp', data)
 
     const response = await api.post('/verify/otp', data)
@@ -54,8 +50,6 @@ const authSlice = createSlice({
   reducers: {
     logout(state) {
         state.user = null;
-        state.phone = null;
-        state.token = null;
         state.status = 'idle';
         state.error = null;
         state.message = null;
@@ -70,7 +64,6 @@ const authSlice = createSlice({
       .addCase(loginUser.fulfilled, (state, action) => {
         state.status = 'succeeded';
         state.message = null;
-        state.phone = action.payload.phone;
       })
       .addCase(loginUser.rejected, (state, action) => {
         state.status = 'failed';
@@ -84,7 +77,6 @@ const authSlice = createSlice({
       .addCase(signupUser.fulfilled, (state, action) => {
         state.status = 'succeeded';
         state.message = action.payload;
-        state.phone = action.payload.phone;
         state.error = null;
       })
       .addCase(signupUser.rejected, (state, action) => {
@@ -100,7 +92,6 @@ const authSlice = createSlice({
         state.status = 'successful';
         state.user = action.payload.user;
         state.message = null;
-        state.token = action.payload.access_token;
         state.error = null;
       })
       .addCase(verifyOTP.rejected, (state, action) => {
@@ -111,6 +102,6 @@ const authSlice = createSlice({
   },
 });
 
-export const { logout, setPhone } = authSlice.actions;
+export const { logout} = authSlice.actions;
 
 export default authSlice.reducer;

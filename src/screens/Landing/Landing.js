@@ -190,9 +190,6 @@ export default function Landing() {
         
   })
 
-  useEffect(() => {
-    console.log(saveAnimation)
-  })
   return (
       <>
           <MainBg>
@@ -289,7 +286,7 @@ export default function Landing() {
                     </div>
                     <div className="main-text-five-landing d-flex flex-column">
                       <div className="heading-no-making-charges d-flex flex-column">  
-                        <Heading text='Shop at no' duration={0.5} style={{marginRight:'5px'}} />
+                        <Heading text='Shop at no' duration={0.5}/>
                         <Heading text='making charges' duration={0.5} />
                       </div>
                       <div className="subtext-no-making-charges w-75">
