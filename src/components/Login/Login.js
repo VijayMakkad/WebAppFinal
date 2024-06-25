@@ -97,6 +97,7 @@ function Login({ onHide, show }) {
     const actionResult = await dispatch(verifyOTP({...values,phone_number:phone}));
     if (verifyOTP.fulfilled.match(actionResult)) {
         console.log('successful login')
+        setPhone('')
         navigate('/dashboard')
     } else {
       console.log('Login failed:', actionResult.error);

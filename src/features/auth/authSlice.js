@@ -36,7 +36,14 @@ export const signupUser = createAsyncThunk('auth/signupUser', async (credentials
 export const verifyOTP = createAsyncThunk('auth/verifyOTP', async (data, { getState }) => {
     console.log('otp', data)
 
-    const response = await api.post('/verify/otp', data)
+  const response = await api.post('/verify/otp', data,
+    {
+        withCredentials: true,
+        headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+        },
+    } )
     if (response.statusText==='OK') {
         return response.data;
     } else {
