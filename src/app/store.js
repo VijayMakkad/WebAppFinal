@@ -1,10 +1,12 @@
-import { configureStore, combineReducers } from '@reduxjs/toolkit';
-import cartReducer from '../features/cart/cartSlice';
-import authstore from '../features/auth/store'; 
+import { configureStore, combineReducers } from "@reduxjs/toolkit";
+import cartReducer from "../features/cart/cartSlice";
+import authstore from "../features/auth/store";
+import wishlistReducer from "../features/wishlist/wishlistSlice";
 
 const rootReducer = combineReducers({
   cart: cartReducer,
-  auth: authstore.reducer, 
+  auth: authstore.reducer,
+  wishlist: wishlistReducer,
 });
 
 const store = configureStore({

@@ -7,7 +7,7 @@ import * as Yup from 'yup';
 import "./Login.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useDispatch } from "react-redux";
-import { loginUser, setPhone, signupUser, verifyOTP } from "../../features/auth/authSlice";
+import { loginUser, signupUser, verifyOTP } from "../../features/auth/authSlice";
 import { useNavigate } from "react-router";
 
 
@@ -17,7 +17,9 @@ const isDateInPast = (date) => {
   return new Date(date) < new Date();
 };
 
+
 function Login({ onHide, show }) {
+  const[phone,setPhone] = useState('')
   const [login, setLogin] = useState('Login');
   const [prev, setPrev] = useState('Login')
 
@@ -62,14 +64,14 @@ function Login({ onHide, show }) {
   }
 
   const onSignupSubmit = async (values, { setSubmitting }) => {
-    const { phone, ...data } = values
+    const { phone } = values
     console.log('Form data', values, phone);
     setSubmitting(false);
     const actionResult = await dispatch(signupUser(values));
     if (signupUser.fulfilled.match(actionResult)) {
-      dispatch(setPhone(phone));
       setLogin('OTP');
       setPrev('Signup');
+      setPhone(phone);
     }
     else {
       console.log('Login failed:', actionResult.error.message);
@@ -82,9 +84,9 @@ function Login({ onHide, show }) {
     setSubmitting(false);
     const actionResult = await dispatch(loginUser(values));
     if (loginUser.fulfilled.match(actionResult)) {
-        dispatch(setPhone(phone));
         setLogin('OTP');
         setPrev('Login');
+        setPhone(phone);
     } else {
       console.log('Login failed:', actionResult.error);
     }
@@ -92,7 +94,7 @@ function Login({ onHide, show }) {
 
   const onOtpSubmit = async (values, { setSubmitting }) => {
     setSubmitting(false);
-    const actionResult = await dispatch(verifyOTP(values));
+    const actionResult = await dispatch(verifyOTP({...values,phone_number:phone}));
     if (verifyOTP.fulfilled.match(actionResult)) {
         console.log('successful login')
         navigate('/dashboard')

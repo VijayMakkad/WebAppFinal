@@ -2,6 +2,8 @@ import React, {useRef} from 'react'
 import { motion } from 'framer-motion';
 
 import './CardLanding.css'
+import Heading from '../../../../components/Text/Heading/Heading';
+
 export default function CardLanding({ heading, subtext, img, id, svg, svgid }) {
 
     return (
@@ -10,7 +12,7 @@ export default function CardLanding({ heading, subtext, img, id, svg, svgid }) {
                 <div className="d-flex flex-row justify-content-between align-items-center h-100">
                     <div className="text d-flex flex-md-column col-xl-6 h-100 justify-content-center align-items-start">
                         <div className="heading mt-1">
-                            {heading}
+                            <Heading style={{fontSize:'40px', fontWeight:'500'}} text={heading} duration={0.5}/>
                         </div>
                         <div className="subtext">
                             {subtext}
