@@ -1,15 +1,25 @@
 import React, { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
-import { useDispatch } from 'react-redux';
-import { addToCart } from '../../features/cart/cartSlice';
+import { useDispatch } from "react-redux";
+import { addToCart } from "../../features/cart/cartSlice";
 import "./product_desc.css";
-import { faShoppingCart, faStar, faStarHalfAlt } from "@fortawesome/free-solid-svg-icons";
-import { faFacebookF, faTwitter, faInstagram, faWhatsapp, faPinterest } from "@fortawesome/free-brands-svg-icons";
+import {
+  faShoppingCart,
+  faStar,
+  faStarHalfAlt,
+} from "@fortawesome/free-solid-svg-icons";
+import {
+  faFacebookF,
+  faTwitter,
+  faInstagram,
+  faWhatsapp,
+  faPinterest,
+} from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import SimilarProducts from "./SimilarProduct";
 import TabSection from "./TabSection";
 import MainBg from "../Background/MainBg";
-import Modal from './Modal';
+import Modal from "./Modal";
 
 const ProductDescPage = () => {
   const { state } = useLocation();
@@ -27,8 +37,12 @@ const ProductDescPage = () => {
   }, []);
 
   const slideImage = () => {
-    const displayWidth = document.querySelector(".img-showcase img:first-child").clientWidth;
-    document.querySelector(".img-showcase").style.transform = `translateX(${-(imgId - 1) * displayWidth}px)`;
+    const displayWidth = document.querySelector(
+      ".img-showcase img:first-child"
+    ).clientWidth;
+    document.querySelector(".img-showcase").style.transform = `translateX(${
+      -(imgId - 1) * displayWidth
+    }px)`;
   };
 
   useEffect(() => {
@@ -47,11 +61,10 @@ const ProductDescPage = () => {
     setShowModal(false);
   };
 
-  const handleSaveModal = () => {
-    const weight = document.getElementById('weight').value;
-    const purity = document.getElementById('purity').value;
-    const size = document.getElementById('size').value;
-    const quantityInput = document.querySelector('.purchase-info input[type="number"]');
+  const handleSaveModal = (weight, purity, size) => {
+    const quantityInput = document.querySelector(
+      '.purchase-info input[type="number"]'
+    );
     const cartItem = {
       product_id: product.product.product_id,
       gold_required: weight,
@@ -75,11 +88,18 @@ const ProductDescPage = () => {
             <div className="img-select">
               {["1", "2", "3", "4"].map((id) => (
                 <div className="img-item" key={id}>
-                  <a href="#" data-id={id} onClick={(e) => {
-                    e.preventDefault();
-                    setImgId(id);
-                  }}>
-                    <img src={product.product.image} alt={`product image ${id}`} />
+                  <a
+                    href="#"
+                    data-id={id}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setImgId(id);
+                    }}
+                  >
+                    <img
+                      src={product.product.image}
+                      alt={`product image ${id}`}
+                    />
                   </a>
                 </div>
               ))}
@@ -88,7 +108,11 @@ const ProductDescPage = () => {
               <div className="img-display">
                 <div className="img-showcase">
                   {["1", "2", "3", "4"].map((id) => (
-                    <img src={product.product.image} alt={`product image ${id}`} key={id} />
+                    <img
+                      src={product.product.image}
+                      alt={`product image ${id}`}
+                      key={id}
+                    />
                   ))}
                 </div>
               </div>
@@ -118,7 +142,13 @@ const ProductDescPage = () => {
 
               <div className="social-links">
                 <p>Share At:</p>
-                {[faFacebookF, faTwitter, faInstagram, faWhatsapp, faPinterest].map((icon, index) => (
+                {[
+                  faFacebookF,
+                  faTwitter,
+                  faInstagram,
+                  faWhatsapp,
+                  faPinterest,
+                ].map((icon, index) => (
                   <a href="#" key={index}>
                     <FontAwesomeIcon icon={icon} />
                   </a>
@@ -127,13 +157,16 @@ const ProductDescPage = () => {
               <div className="product-ul">
                 <ul>
                   <li>
-                    <span style={{ color: "yellow" }}>SKU:</span> <span>{product.product.product_id}</span>
+                    <span style={{ color: "yellow" }}>SKU:</span>{" "}
+                    <span>{product.product.product_id}</span>
                   </li>
                   <li>
-                    <span style={{ color: "yellow" }}>Available:</span> <span>{product.product.status || "In stock"}</span>
+                    <span style={{ color: "yellow" }}>Available:</span>{" "}
+                    <span>{product.product.status || "In stock"}</span>
                   </li>
                   <li>
-                    <span style={{ color: "yellow" }}>Category:</span> <span>{product.product.category_name}</span>
+                    <span style={{ color: "yellow" }}>Category:</span>{" "}
+                    <span>{product.product.category_name}</span>
                   </li>
                 </ul>
               </div>

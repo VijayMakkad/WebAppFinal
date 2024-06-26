@@ -10,6 +10,10 @@ const Modal = ({ show, onClose, onSave, productParams }) => {
 
   if (!show) return null;
 
+  const handleSave = () => {
+    onSave(selectedWeight, selectedPurity, selectedSize);
+  };
+
   return (
     <div className="add-to-cart-modal-overlay">
       <div className="add-to-cart-modal-content">
@@ -92,7 +96,7 @@ const Modal = ({ show, onClose, onSave, productParams }) => {
                 width: '90%',
                 height: '40px',
               }}
-              onClick={onSave}
+              onClick={handleSave}
             >
               Save
             </button>
