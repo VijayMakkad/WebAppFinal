@@ -1,6 +1,6 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { json } from 'react-router-dom';
+import { getCookie } from '../../utils/getCookie';
 
 const initialState = {
   items: [],
@@ -12,16 +12,14 @@ export const addToCart = createAsyncThunk(
   'cart/addToCart',
   async (cartItem, { rejectWithValue }) => {
     try {
+      const token = getCookie('authToken');
       const response = await axios.post(
         'http://127.0.0.1:8000/api/cart/add',
         cartItem,
         {
-          withcredentials: true,
-          headers : { "Content-Type": "application/json"}
-          
-          // headers: {
-          //   Authorization: 'Bearer 116|lScHupUH0tFlZE1CnjqnPaiAbPcH6UQLHS5ThykD',
-          // },
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         }
       );
       return response.data;
