@@ -1,5 +1,5 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-
+import React, { useEffect } from 'react';
 import Dashboard from "./screens/Dashboard/Dashboard";
 import Landing from "./screens/Landing/Landing";
 import Shop from "./screens/Shop/Shop";
@@ -11,7 +11,22 @@ import Cart from "./screens/Cart/Cart";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { CartProvider } from "react-use-cart";
 import Account from "./screens/Acount/Account";
+
+import { useDispatch } from 'react-redux';
+import { fetchRates } from './features/rates/ratesSlice';
+
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchRates());
+
+    const interval = setInterval(() => {
+      dispatch(fetchRates());
+    }, 600000); // 10 minutes in milliseconds
+
+    return () => clearInterval(interval); // Cleanup interval on component unmount
+  }, [dispatch]);
   return (
     <div id="App">
       <CartProvider>

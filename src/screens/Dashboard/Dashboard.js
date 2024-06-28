@@ -16,6 +16,8 @@ import { Chart } from "react-chartjs-2";
 import { height } from "@fortawesome/free-brands-svg-icons/fa42Group";
 import MainBg from "../../screens/Background/MainBg";
 
+import { useSelector } from 'react-redux';
+
 //Below code is for generating random data for the line chart
 const generateLineData = (years) => {
   const data = [];
@@ -98,6 +100,7 @@ const transactions = [
 
 const Dashboard = () => {
   const maxVisibleItems = 5;
+  const goldRate = useSelector((state) => state.rates.goldRate);
   return (
     <MainBg>
       <Container fluid className="dashboard">
@@ -117,7 +120,7 @@ const Dashboard = () => {
             <Card className="card-custom">
               <Card.Body>
                 <Card.Title>Today's Gold Rate</Card.Title>
-                <Card.Text>$7120</Card.Text>
+                <Card.Text>{goldRate ? `$${goldRate}` : 'Loading...'}</Card.Text>
               </Card.Body>
             </Card>
           </Col>
