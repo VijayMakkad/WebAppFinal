@@ -281,6 +281,13 @@ img{
     color: #fff;
 }
 
+.social-links p{
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  margin-right: auto;
+  margin-top: 10px;
+}
 @media screen and (min-width: 992px){
     .tab-section {
         margin: 10%;

@@ -2,6 +2,7 @@
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import './CategoryGrid.css';
+import axios from 'axios';
 
 const images = [
   { src: "/assets/dashboard_carousel.png", label: "Rings", id: "Rings" },
@@ -20,15 +21,16 @@ const images = [
 const CategoryGrid = () => {
   const handleImageClick = async (id) => {
     try {
-      // const response = await fetch(`http://127.0.0.1:8000/api/products/${id}`);
-      const response = await fetch(`http://127.0.0.1:8000/api/products/popular`);
-      const data = await response.json();
+      // const response = await axios.get(`http://127.0.0.1:8000/api/products/${id}`);
+      const response = await axios.get(`http://127.0.0.1:8000/api/products/popular`);
+      const data = response.data;
       localStorage.setItem('products', JSON.stringify(data.products));
-      window.location.href = 'http://localhost:3000/explore';
+      window.location.href = 'http://127.0.0.1:3000/explore';
     } catch (error) {
       console.error('Error fetching products:', error);
     }
   };
+  
 
   return (
     <Container fluid className="category-grid">

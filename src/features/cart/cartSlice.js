@@ -12,14 +12,16 @@ export const addToCart = createAsyncThunk(
   'cart/addToCart',
   async (cartItem, { rejectWithValue }) => {
     try {
-      const token = getCookie('authToken');
+      // const token = getCookie('authToken');
+      // console.log('token: ',{token});
       const response = await axios.post(
         'http://127.0.0.1:8000/api/cart/add',
         cartItem,
         {
           headers: {
-            Authorization: `Bearer ${token}`,
+            "Content-Type":"application/json",
           },
+          withCredentials: true,
         }
       );
       return response.data;
