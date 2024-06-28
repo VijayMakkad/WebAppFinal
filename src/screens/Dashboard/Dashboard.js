@@ -106,7 +106,10 @@ const Dashboard = () => {
             <Card className="card-custom">
               <Card.Body>
                 <Card.Title>Total Savings in Gold</Card.Title>
-                <Card.Text>45.7 grams</Card.Text>
+                <div className="d-flex justify-content-between align-items-center">
+                  <Card.Text className="mb-0">45.7 grams</Card.Text>
+                  <Button variant="outline-light">Buy Gold</Button>
+                </div>
               </Card.Body>
             </Card>
           </Col>
@@ -122,7 +125,10 @@ const Dashboard = () => {
             <Card className="card-custom">
               <Card.Body>
                 <Card.Title>Your Saving in Rupees</Card.Title>
-                <Card.Text>$325,384</Card.Text>
+                <div className="d-flex justify-content-between align-items-center">
+                  <Card.Text>$325,384</Card.Text>
+                  <Button variant="outline-light">Withdraw Gold</Button>
+                </div>
               </Card.Body>
             </Card>
           </Col>
@@ -192,11 +198,13 @@ const Dashboard = () => {
                   </Col>
                 </Row>
                 <Row>
-                  {wishlistItems.slice(0, maxVisibleItems).map((item, index) => (
-                    <Col key={index}>
-                      <img src={item} className="wishlist-item-img" />
-                    </Col>
-                  ))}
+                  {wishlistItems
+                    .slice(0, maxVisibleItems)
+                    .map((item, index) => (
+                      <Col key={index}>
+                        <img src={item} className="wishlist-item-img" />
+                      </Col>
+                    ))}
                 </Row>
               </Card.Body>
             </Card>
