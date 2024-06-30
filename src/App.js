@@ -10,7 +10,7 @@ import Cart from "./screens/Cart/Cart";
 
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { CartProvider } from "react-use-cart";
-import Account from "./screens/Acount/Account";
+import Account from "./screens/Acount/AccountPage";
 
 import { useDispatch } from 'react-redux';
 import { fetchRates } from './features/rates/ratesSlice';

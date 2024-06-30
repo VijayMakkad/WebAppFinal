@@ -47,13 +47,29 @@
   border-bottom: 1px solid #ccc;
   padding: 10px 0;
 } */
+/* cart.css */
+
+.quantity-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100px; /* Adjust based on your design */
+}
 
 .quantity-controls button {
-  margin: 0 2px;
+  width: 40px;
+  height: 40px;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  border: 1px solid white;
 }
 
 .quantity-controls p {
-  margin: 0 5px;
+  margin: 0;
+  font-size: 16px;
   text-align: center;
-  line-height: 40px; /* Align quantity number vertically */
+  width: 40px; /* Match the button width */
 }

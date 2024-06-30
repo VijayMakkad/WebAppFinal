@@ -1,4 +1,10 @@
 /* account.css */
+.form-container{
+ /* background: linear-gradient(120deg, 
+                                /*, Dark Blue */
+                                /* #FF69B4,          Pink */
+  background-color: rgba(0, 0, 0, 0.4);
+}
 
 /* General input style */
 .custom-input {
@@ -57,7 +63,7 @@ select.custom-input option {
 }
 
 .required-label::after {
-  content: ' *'; /* Add asterisk */
+  content: ' '; 
   color: red; /* Set asterisk color to red */
 }
 
@@ -86,4 +92,16 @@ select.custom-input option {
 .error-message {
   color: #ff4d4d;
   font-size: 0.9em;
+}
+
+.transparent-card {
+  background: rgba(255, 255, 255, 0.1); /* Transparent background */
+  backdrop-filter: blur(10px); /* Backdrop blur filter */
+  -webkit-backdrop-filter: blur(10px); /* For Safari support */
+  border: none; /* Remove border */
+  border-radius: 8px; /* Optional: Add border radius for smoother edges */
+}
+
+.transparent-card .card-body {
+  color: white; /* Ensure text is visible on the transparent background */
 }
